@@ -18,7 +18,7 @@ praise <- function() {
                  "No dobra, ale na następne pytanie to już na pewno nie odpowiesz.",
                  "Eeee tam... Pofarciło Ci się...",
                  "Brawo!",
-                 "\m/>.<\m/",
+                 "\\m/>.<\\m/",
                  "No proszę!",
                  "Ćwiczenie czyni mistrza!",
                  "Doprawdy pyszna herbatka, nie sądzisz?",
