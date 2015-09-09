@@ -407,12 +407,12 @@ expr_creates_var <- function(correctName=NULL){
   if(is.null(correctName)){
     results <- expectThat(length(delta), equals(1), 
                           label=paste(deparse(e$expr), 
-                                      "does not create a variable."))  
+                                      "nie tworzy zmiennej."))  
   } else {
     results <- expectThat(names(delta), 
                           is_equivalent_to(correctName, label=correctName), 
                           label=paste(deparse(e$expr),
-                                      "does not create a variable named",
+                                      "nie tworzy zmiennej o nazwie",
                                       correctName))
   }
   if(results$passed){
@@ -442,8 +442,8 @@ val_has_length <- function(len){
   e <- get("e", parent.frame())
   try(n <- as.integer(len), silent=TRUE)
   if(is.na(n)){
-    stop(message=paste("BUG: specified length", len,
-                                 "is not an integer."))
+    stop(message=paste("BUG: wskazana długość", len,
+                                 "nie jest liczbą calkowitą."))
   }
   results <- expectThat(length(e$val), equals(n, label=n), 
                         label=paste0("length(c(", toString(e$val), "))"))                                                   

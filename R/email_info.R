@@ -13,9 +13,9 @@ email_admin <- function() {
   pv <- packageVersion('swirl')
   
   # Set up email elements address, subject, and body
-  address <- 'info@swirlstats.com'
-  subject <- paste('Need help: swirl', pv)
-  body <- paste('Brief description of problem: \n\n',
+  address <- 'dbrzezinski@cs.put.poznan.pl'
+  subject <- paste('Pomocy: swirl', pv)
+  body <- paste('Krótki opis problemu: \n\n',
                 paste(rep('#', 15),  collapse = ''),
                 paste(si, collapse = '\n'),
                 sep = '\n\n')
@@ -42,9 +42,9 @@ email <- function(address, subject, body) {
   tryCatch({
     browseURL(url, browser = email_browser())},
     error = function(e) {
-      message("Sending failed with error: ", e$message)
-      cat("To: ", address, "\n", sep = "")
-      cat("Subject: ", subject, "\n", sep = "")
+      message("Wysyłanie zakończyło się niepowodzeniem: ", e$message)
+      cat("Do: ", address, "\n", sep = "")
+      cat("Temat: ", subject, "\n", sep = "")
       cat("\n")
       cat(body, "\n", sep = "")
     }

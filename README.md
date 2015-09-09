@@ -1,10 +1,10 @@
-# swirl
+# swirl (for Polish students)
 
 [![Build Status](https://travis-ci.org/swirldev/swirl.png?branch=master)](https://travis-ci.org/swirldev/swirl)
 [![Downloads](http://cranlogs.r-pkg.org/badges/swirl?color=3399ff)](http://cran-logs.rstudio.com/)
 <a href="https://swirlstatsslack.herokuapp.com"><img src="https://swirlstatsslack.herokuapp.com/badge.svg"></a>
 
-### [http://swirlstats.com](http://swirlstats.com)
+**This repository holds translations and original content for Polish students trying to learn R using swirl. As the attached files are mainly translations, for an up-to-date version of swirl, please visit: [https://github.com/swirldev/swirl](https://github.com/swirldev/swirl).**
 
 swirl is a platform for learning (and teaching) statistics and R simultaneously and interactively. It presents a choice of course lessons and interactively tutors a user through them. A user may be asked to watch a video, to answer a multiple-choice or fill-in-the-blanks question, or to enter a command in the R console precisely as if he or she were using R in practice. Emphasis is on the last, interacting with the R console. User responses are tested for correctness and hints are given if appropriate. Progress is automatically saved so that a user may quit at any time and later resume without losing work.
 
