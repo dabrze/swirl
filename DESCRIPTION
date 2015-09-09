@@ -1,10 +1,10 @@
-Package: swirl-polish
+Package: swirl.pl
 Title: Learn R, in R
 Description: A polish translation of swirl - a library that turns the R console 
     into an interactive learning environment. Users receive immediate feedback 
     as they are guided through self-paced lessons in data science and R programming.
 URL: http://swirlstats.com
-Version: 1.0.0
+Version: 1.0.1
 License: MIT
 Authors@R: c(
     person("Nick", "Carchedi", email = "nick.carchedi@gmail.com", role = c("aut", "cre")),
