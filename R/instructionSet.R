@@ -27,25 +27,25 @@ waitUser.default <- function(current.row, e){
 }
 
 waitUser.text_question <- function(current.row, e){
-  e$val <- str_trim(unlist(strsplit(readline("ANSWER: "),",")))
+  e$val <- str_trim(unlist(strsplit(readline("ODPOWIEDŹ: "),",")))
   e$iptr <- 1 + e$iptr
 }
 
 waitUser.text_many_question <- function(current.row, e){
-  e$val <- str_trim(unlist(strsplit(readline("ANSWER: "),",")))
+  e$val <- str_trim(unlist(strsplit(readline("ODPOWIEDŹ: "),",")))
   e$iptr <- 1 + e$iptr
 }
 
 waitUser.text_order_question <- function(current.row, e){
-  e$val <- str_trim(unlist(strsplit(readline("ANSWER: "),",")))
+  e$val <- str_trim(unlist(strsplit(readline("ODPOWIEDŹ: "),",")))
   e$iptr <- 1 + e$iptr
 }
 
 
 waitUser.video <- function(current.row, e){
-  response <- readline("Yes or No? ")
-  if(tolower(response) %in% c("y", "yes")){
-    swirl_out("Type nxt() to continue")
+  response <- readline("Tak, Nie? ")
+  if(tolower(response) %in% c("t", "tak")){
+    swirl_out("Wpisz nxt(), aby kontynuować")
     e$prompt <- TRUE
     e$playing <- TRUE
     browseURL(current.row[,"VideoLink"])
@@ -157,7 +157,7 @@ testResponse.default <- function(current.row, e){
   if(is.na(tests) || tests == ""){
     results <- is(e, "dev")
     if(!results){
-      stop("BUG: There are no tests for this question!")
+      stop("BUG: Nie ma testów dla tego pytania!")
     }
   } else {
     tests <- str_trim(unlist(strsplit(tests,";")))
@@ -180,7 +180,7 @@ testResponse.default <- function(current.row, e){
     if(length(e$snapshot)>0)xfer(as.environment(e$snapshot), globalenv())
     mes <- tryAgain()
     if(is(current.row, "cmd_question") && !is(e, "datacamp")) {
-      mes <- paste(mes, "Or, type info() for more options.")
+      mes <- paste(mes, "Lub wpisz info() aby zobaczyć więcej opcji.")
     }
     hint <- current.row[,"Hint"]
     post_result(e, passed = correct, feedback = mes, hint = if(is.na(hint)) NULL else hint)

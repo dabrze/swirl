@@ -61,13 +61,11 @@ mainMenu.default <- function(e){
       if(length(coursesU)==0){
         suggestions <- yaml.load_file(file.path(courseDir(e), "suggested_courses.yaml"))
         choices <- sapply(suggestions, function(x)paste0(x$Course, ": ", x$Description))
-        swirl_out("To begin, you must install a course. I can install a",
-                  "course for you from the internet, or I can send you to a web page",
-                  "(https://github.com/swirldev/swirl_courses)",
-                  "which will provide course options and directions for", 
-                  "installing courses yourself.",
-                  "(If you are not connected to the internet, type 0 to exit.)")
-        choices <- c(choices, "Don't install anything for me. I'll do it myself.")
+        swirl_out("Aby rozpocząć, musisz mieć zainstalowany jakiś moduł. Mogę zainstalować za Ciebie",
+                  "moduł z Internetu albo wysłać Cię na stronę internetową z modułami",
+                  "(https://github.com/dabrze/swirl_courses).",
+                  "(Jeśli nie jestes połączony z Internetem, wpisz 0 aby wyjść.)")
+        choices <- c(choices, "Niczego za mnie nie instaluj. Sam to zrobię.")
         choice <- select.list(choices, graphics=FALSE)
         n <- which(choice == choices)
         if(length(n) == 0)return(FALSE)
@@ -75,18 +73,17 @@ mainMenu.default <- function(e){
           repeat {
             temp <- try(eval(parse(text=suggestions[[n]]$Install)), silent=TRUE)
             if(is(temp, "try-error")){
-              swirl_out("Sorry, but I'm unable to fetch ", sQuote(choice),
-                        "right now. Are you sure you have an internet connection?",
-                        "If so, would you like to try again or visit",
-                        "the course repository for instructions on how to",
-                        "install a course manually? Type 0 to exit.")
-              ch <- c("Try again!", 
-                      "Send me to the course repository for manual installation.")
+              swirl_out("Przepraszam, nie byłem w stanie ściągnąć ", sQuote(choice),
+                        ". Czy jesteś pewien, że jesteś połączony z Internetem?",
+                        "Jesli tak, czy mam spróbować jeszcze raz czy wolisz odwiedzić",
+                        "repozytorium i spróbować zainstalować moduł ręcznie? Wpisz 0, aby wyjść")
+              ch <- c("Spróbuj jeszcze raz!", 
+                      "Przenieś mnie na stronę repozytorium - spróbuję sam zainstalować moduł.")
               resp <- select.list(ch, graphics=FALSE)
               if(resp == "") return(FALSE)
               if(resp == ch[2]) {
-                swirl_out("OK. I'm opening the swirl course respository in your browser.")
-                browseURL("https://github.com/swirldev/swirl_courses")
+                swirl_out("OK. Otwieram repozytorium modułów w Twojej przeglądarce.")
+                browseURL("https://github.com/dabrze/swirl_courses")
                 return(FALSE)
               }
             } else {
@@ -99,8 +96,8 @@ mainMenu.default <- function(e){
                                function(x)length(dir(file.path(courseDir(e),x)))>0))
           coursesU <- coursesU[idx]
         } else {
-          swirl_out("OK. I'm opening the swirl course respository in your browser.")
-          browseURL("https://github.com/swirldev/swirl_courses")
+          swirl_out("OK. Otwieram repozytorium modułów w Twojej przeglądarce.")
+          browseURL("https://github.com/dabrze/swirl_courses")
           return(FALSE)
         }
       }
@@ -110,8 +107,8 @@ mainMenu.default <- function(e){
       while(lesson == ""){
         course <- courseMenu(e, coursesR)
         if(!is.null(names(course)) && names(course)=="repo") {
-          swirl_out("OK. I'm opening the swirl courses web page in your browser.")
-          browseURL("https://github.com/swirldev/swirl_courses")
+          swirl_out("OK. Otwieram repozytorium modułów w Twojej przeglądarce.")
+          browseURL("https://github.com/dabrze/swirl_courses")
           return(FALSE)
         }
         if(course=="")return(FALSE)
@@ -207,7 +204,7 @@ welcome.test <- function(e, ...){
 
 # Default version.
 welcome.default <- function(e, ...){
-  swirl_out("Welcome to swirl!")
+  swirl_out("Witaj w narzędziu swirl!")
   swirl_out("Please sign in. If you've been here before, use the same name as you did then. If you are new, call yourself something unique.", skip_after=TRUE)
   resp <- readline("What shall I call you? ")
   while(str_detect(resp, '[[:punct:]]')) {
@@ -225,7 +222,7 @@ welcome.default <- function(e, ...){
 housekeeping.default <- function(e){
   swirl_out(paste0("Thanks, ", e$usr,". Let's cover a few quick housekeeping items before we begin our first lesson. First of all, you should know that when you see '...', that means you should press Enter when you are done reading and ready to continue."))
   readline("\n...  <-- That's your cue to press Enter to continue")
-  swirl_out("Also, when you see 'ANSWER:', the R prompt (>), or when you are asked to select from a list, that means it's your turn to enter a response, then press Enter to continue.")
+  swirl_out("Also, when you see 'ODPOWIEDŹ:', the R prompt (>), or when you are asked to select from a list, that means it's your turn to enter a response, then press Enter to continue.")
   select.list(c("Continue.", "Proceed.", "Let's get going!"),
               title="\nSelect 1, 2, or 3 and press Enter", graphics=FALSE)
   swirl_out("You can exit swirl and return to the R prompt (>) at any time by pressing the Esc key. If you are already at the prompt, type bye() to exit and save your progress. When you exit properly, you'll see a short message letting you know you've done so.")

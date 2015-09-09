@@ -4,7 +4,7 @@ Description: A polish translation of swirl - a library that turns the R console
     into an interactive learning environment. Users receive immediate feedback 
     as they are guided through self-paced lessons in data science and R programming.
 URL: http://swirlstats.com
-Version: 1.0.1
+Version: 1.0.3
 License: MIT
 Authors@R: c(
     person("Nick", "Carchedi", email = "nick.carchedi@gmail.com", role = c("aut", "cre")),
@@ -12,7 +12,7 @@ Authors@R: c(
     person("Gina", "Grdina", role = "aut"),
     person("Sean", "Kross", role = "aut"),
     person("Filip", "Schouwenaars", role = "ctb"),
-    person("Alexandre", "Léonard", role = "ctb"),
+    person("Alexandre", "Leonard", role = "ctb"),
     person("Dariusz", "Brzezinski", role = "ctb")
     )
 Depends:

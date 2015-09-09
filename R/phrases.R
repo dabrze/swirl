@@ -3,29 +3,31 @@ praise <- function() {
   swirl_is_fun <- getOption("swirl_is_fun")
   
   if(is.null(swirl_is_fun) || isTRUE(swirl_is_fun)) {
-    phrases <- c("You got it!",
-                 "Nice work!",
-                 "Keep up the great work!",
-                 "You are doing so well!",
-                 "All that hard work is paying off!",
-                 "You nailed it! Good job!",
-                 "You're the best!",
-                 "You are amazing!",
-                 "Keep working like that and you'll get there!",
-                 "Perseverance, that's the answer.",
-                 "Great job!",
-                 "You are quite good my friend!",
-                 "Your dedication is inspiring!",
-                 "You got it right!",
-                 "That's correct!",
-                 "You are really on a roll!",
-                 "Excellent job!",
-                 "All that practice is paying off!",
-                 "Excellent work!",
-                 "That's a job well done!",
-                 "That's the answer I was looking for.")
+    phrases <- c("No racza!",
+                 "Nieźle!",
+                 "Dajesz, dajesz!",
+                 "Proste!",
+                 "Mniam!",
+                 "Idealnie! O to chodziło!",
+                 "Jesteś geniuszem!",
+                 "Wyjdź za mnie!",
+                 "Jak tak dalej pójdzie to może zaliczysz ten przedmiot!",
+                 "Krok po kroku, krok po kroczku...",
+                 "Super!",
+                 "Jedziemy dalej!",
+                 "No dobra, ale na następne pytanie to już na pewno nie odpowiesz.",
+                 "Eeee tam... Pofarciło Ci się...",
+                 "Brawo!",
+                 "\m/>.<\m/",
+                 "No proszę!",
+                 "Ćwiczenie czyni mistrza!",
+                 "Doprawdy pyszna herbatka, nie sądzisz?",
+                 "Jaram się jak pochodnia!",
+                 "No i o to chodzi!",
+                 "Baja!",
+                 "Ja! Uwielbiam Cię! Ty jesteś tu! I dajesz radę!")
   } else {
-    phrases <- "Correct!"
+    phrases <- "Poprawna odpowiedź!"
   }
   sample(phrases, 1)
 }
@@ -35,22 +37,23 @@ tryAgain <- function() {
   swirl_is_fun <- getOption("swirl_is_fun")
   
   if(is.null(swirl_is_fun) || isTRUE(swirl_is_fun)) {
-    phrases <- c("Almost! Try again.",
-                 "You almost had it, but not quite. Try again.",
-                 "Give it another try.",
-                 "Not quite! Try again.",
-                 "Not exactly. Give it another go.",
-                 "That's not exactly what I'm looking for. Try again.",
-                 "Nice try, but that's not exactly what I was hoping for. Try again.",
-                 "Keep trying!",
+    phrases <- c("No prawie! Spróbuj jeszcze raz.",
+                 "Już prawie się udało. Jeszcze raz.",
+                 "Spróbuj ponownie.",
+                 "Powtórz Waść, wstydu oszczędź!",
+                 "Prawie dobrze. Spróbuj ponownie.",
+                 "Nie do końca o to mi chodziło. Spróbuj jeszcze raz.",
+                 "Niezła próba, ale nie ot mi chodziło. Spróbuj ponownie.",
+                 "Próbuj dalej!",
                  "That's not the answer I was looking for, but try again.",
-                 "Not quite right, but keep trying.",
-                 "You're close...I can feel it! Try it again.",
-                 "One more time. You can do it!",
-                 "Not quite, but you're learning! Try again.",
-                 "Try again. Getting it right on the first try is boring anyway!")
+                 "Prowadzący płakał jak sprawdzał. Spróbuj jeszcze raz.",
+                 "Panie Turek! Niech pan tu kończy to spotkanie! Turku! Kończ ten mecz!",
+                 "(-_-)zzz",
+                 "Klops. Spróbuj jeszcze raz.",
+                 "To nie to, ale widać że się uczysz! Spróbuj jeszcze raz.",
+                 "Spróbuj jeszcze raz. Zgadywanie wszystkiego za pierwszym razem byłoby nudne!")
   } else {
-    phrases <- "Incorrect. Please try again."
+    phrases <- "Niepoprawna odpowiedź. Spróbuj jeszcze raz."
   }
   sample(phrases, 1)
 }

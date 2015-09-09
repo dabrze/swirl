@@ -42,8 +42,6 @@ NULL
 #' \code{mirror = "bitbucket"} option (see below).
 #' 
 #' @param course_name The name of the course you wish to install.
-#' @param dev Set to \code{TRUE} to install a course in development from the swirl_misc repository.
-#' @param mirror Select swirl course repository mirror. Valid arguments are \code{"github"} and \code{"bitbucket"}.
 #' @export
 #' @importFrom httr GET content progress
 #' @examples
@@ -57,39 +55,19 @@ NULL
 #' 
 #' # To install a course in development from the swirl_misc repository
 #' install_from_swirl("Including Data", dev = TRUE)
-#' 
-#' # To install a course from the Bitbucket mirror
-#' install_from_swirl("R Programming", mirror = "bitbucket")
 #' }
 #' @family InstallCourses
-install_from_swirl <- function(course_name, dev = FALSE, mirror = "github"){
+install_from_swirl <- function(course_name){
   # Validate arguments
   if(!is.character(course_name)) {
-    stop("Argument 'course_name' must be surrounded by quotes (i.e. a character string)!")
-  }
-  if(!is.logical(dev)) {
-    stop("Argument 'dev' must be either TRUE or FALSE!")
-  }
-  if(!(mirror == "github" || mirror == "bitbucket")){
-    stop("Please enter a valid name for a mirror. ('github' or 'bitbucket')")
+    stop("Argument 'course_name' musi być otoczony cudzysłowami (musi być stringiem)!")
   }
     
   # make pathname from course_name
   course_name <- make_pathname(course_name)
   
   # Construct url to the appropriate zip file
-  if(dev) {
-    if(mirror != "github"){
-      stop("To access swirl courses in development on Bitbucket go to https://bitbucket.org/swirldevmirror/swirl_misc")
-    }
-    url <- "http://github.com/swirldev/swirl_misc/zipball/master"
-  } else {
-    if(mirror == "bitbucket"){
-      url <- "https://bitbucket.org/swirldevmirror/swirl_courses/get/HEAD.zip"
-    } else {
-      url <- "http://github.com/swirldev/swirl_courses/zipball/master"
-    }
-  }
+  url <- "http://github.com/dabrze/swirl_courses/zipball/master"
   
   # Send GET request
   response <- GET(url, progress())
@@ -111,8 +89,8 @@ install_from_swirl <- function(course_name, dev = FALSE, mirror = "github"){
   
   # Check if course exists
   if(length(unzip_list) == 0) {
-    stop(paste0("Course '", course_name, "' not found in course repository! ",
-                "Make sure you've got the name exactly right, then try again."))
+    stop(paste0("Nie znaleziono modułu '", course_name, "' w repozytorium! ",
+                "Upewnij się, że podałeś poprawną nazwę repozytorium i spróbuj jeszcze raz."))
   }
   
   # Extract
@@ -122,9 +100,9 @@ install_from_swirl <- function(course_name, dev = FALSE, mirror = "github"){
   top_dir <- file.path(get_swirl_option("courses_dir"), sort(dirname(unzip_list))[1])
   dirs_to_copy <- list.files(top_dir, full.names=TRUE)
   if(file.copy(dirs_to_copy, get_swirl_option("courses_dir"), recursive=TRUE)){
-    swirl_out("Course installed successfully!", skip_after=TRUE)
+    swirl_out("Moduł zainstalowany poprawnie!", skip_after=TRUE)
   } else {
-    swirl_out("Course installation failed.", skip_after=TRUE)
+    swirl_out("Nie udało się zainstalować modułu.", skip_after=TRUE)
   }
   
   # Delete unzipped directory
@@ -173,9 +151,9 @@ zip_course <- function(path, dest=NULL){
   zip_dir <- paste0(dest, "/", "swirl_zip_creator_TEMP")
   dir.create(zip_dir)
   if(file.copy(path, zip_dir, recursive=TRUE)){
-    swirl_out("Course directory was successfully zipped!", skip_after=TRUE)
+    swirl_out("Katalog modułu został poprawnie rozpakowany!", skip_after=TRUE)
   } else {
-    swirl_out("Course installation failed.", skip_after=TRUE)
+    swirl_out("Nie udało się zainstalować modułu.", skip_after=TRUE)
   }
   
   # Change directory to folder to be zipped
@@ -208,9 +186,9 @@ uninstall_course <- function(course_name){
   path <- file.path(get_swirl_option("courses_dir"), make_pathname(course_name))
   if(file.exists(path)){
     unlink(path, recursive=TRUE, force=TRUE)
-    message("Course uninstalled successfully!")
+    message("Moduł został poprawnie odinstalowany!")
   } else {
-    stop("Course not found!")
+    stop("Nie znaleziono modułu!")
   }
   invisible()
 }
@@ -234,9 +212,9 @@ uninstall_all_courses <- function(){
   
   if(file.exists(path)){
     unlink(path, recursive=TRUE, force=TRUE)
-    message("All courses uninstalled successfully!")
+    message("Wszystkie moduły zostały poprawnie odinstalowane!")
   } else {
-    stop("No courses found!")
+    stop("Nie znaleziono modułów!")
   }
   
   dir.create(path, showWarnings = FALSE)
@@ -266,10 +244,10 @@ uninstall_all_courses <- function(){
 #' @family InstallCourses
 install_course_zip <- function(path, multi=FALSE, which_course=NULL){
   if(!is.logical(multi) || is.na(multi)) {
-    stop("Argument 'multi' must be either TRUE or FALSE.")
+    stop("Argument 'multi' musi mieć wartość TRUE lub FALSE.")
   }
   if(!multi && !is.null(which_course)) {
-    stop("Argument 'which_course' should only be specified when argument 'multi' is TRUE.")
+    stop("Argument 'which_course' powinien być podany tylko gdy 'multi' ma wartość TRUE.")
   }
   if(multi){
     # Find list of files not in top level directory
@@ -288,14 +266,14 @@ install_course_zip <- function(path, multi=FALSE, which_course=NULL){
                    nomatch=-1)
       nomatch <- match_ind < 0
       if(any(nomatch)) {
-        stop("Course ", sQuote(which_course[nomatch][1]), " not in specified directory. Be careful, course names are case sensitive!")
+        stop("Nie znaleziono modułu ", sQuote(which_course[nomatch][1]), " we wskazanym katalogu. Uwaga, nazwy modułów są \"case sensitive\"!")
       }
       dirs_to_copy <- dirs_to_copy[match_ind]
     }
     if(file.copy(dirs_to_copy, get_swirl_option("courses_dir"), recursive=TRUE)){
-      swirl_out("Course installed successfully!", skip_after=TRUE)
+      swirl_out("Moduł zainstalowany poprawnie!", skip_after=TRUE)
     } else {
-      swirl_out("Course installation failed.", skip_after=TRUE)
+      swirl_out("Nie udało się zainstalować modułu.", skip_after=TRUE)
     }
     
     # Delete unzipped directory
@@ -331,14 +309,14 @@ install_course_directory <- function(path){
   
   # Check to make sure there are fewer than 1000 files in course directory
   if(length(garbage_result) > 1000){
-    stop("Course directory is too large to install")
+    stop("Za dużo plików w katalogu modułu!")
   }
   
   # Copy files
   if(file.copy(path, get_swirl_option("courses_dir"), recursive=TRUE)){
-    swirl_out("Course installed successfully!", skip_after=TRUE)
+    swirl_out("Moduł zainstalowany poprawnie!", skip_after=TRUE)
   } else {
-    swirl_out("Course installation failed.", skip_after=TRUE)
+    swirl_out("Nie udało się zainstalować modułu.", skip_after=TRUE)
   }
   
   invisible()
