@@ -15,7 +15,7 @@ email_admin <- function() {
   # Set up email elements address, subject, and body
   address <- 'dbrzezinski@cs.put.poznan.pl'
   subject <- paste('Pomocy: swirl', pv)
-  body <- paste('KrÃ³tki opis problemu: \n\n',
+  body <- paste('Krótki opis problemu: \n\n',
                 paste(rep('#', 15),  collapse = ''),
                 paste(si, collapse = '\n'),
                 sep = '\n\n')
@@ -42,7 +42,7 @@ email <- function(address, subject, body) {
   tryCatch({
     browseURL(url, browser = email_browser())},
     error = function(e) {
-      message("WysyÅ‚anie zakoÅ„czyÅ‚o siÄ™ niepowodzeniem: ", e$message)
+      message("Wysy³anie zakoñczy³o siê niepowodzeniem: ", e$message)
       cat("Do: ", address, "\n", sep = "")
       cat("Temat: ", subject, "\n", sep = "")
       cat("\n")

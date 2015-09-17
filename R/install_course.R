@@ -60,7 +60,7 @@ NULL
 install_from_swirl <- function(course_name){
   # Validate arguments
   if(!is.character(course_name)) {
-    stop("Argument 'course_name' musi byƒá otoczony cudzys≈Çowami (musi byƒá stringiem)!")
+    stop("Argument 'course_name' musi byÊ otoczony cudzys≥owami (musi byÊ stringiem)!")
   }
     
   # make pathname from course_name
@@ -89,8 +89,8 @@ install_from_swirl <- function(course_name){
   
   # Check if course exists
   if(length(unzip_list) == 0) {
-    stop(paste0("Nie znaleziono modu≈Çu '", course_name, "' w repozytorium! ",
-                "Upewnij siƒô, ≈ºe poda≈Çe≈õ poprawnƒÖ nazwƒô repozytorium i spr√≥buj jeszcze raz."))
+    stop(paste0("Nie znaleziono modu≥u '", course_name, "' w repozytorium! ",
+                "Upewnij siÍ, øe poda≥eú poprawnπ nazwÍ repozytorium i sprÛbuj jeszcze raz."))
   }
   
   # Extract
@@ -100,9 +100,9 @@ install_from_swirl <- function(course_name){
   top_dir <- file.path(get_swirl_option("courses_dir"), sort(dirname(unzip_list))[1])
   dirs_to_copy <- list.files(top_dir, full.names=TRUE)
   if(file.copy(dirs_to_copy, get_swirl_option("courses_dir"), recursive=TRUE)){
-    swirl_out("Modu≈Ç zainstalowany poprawnie!", skip_after=TRUE)
+    swirl_out("Modu≥ zainstalowany poprawnie!", skip_after=TRUE)
   } else {
-    swirl_out("Nie uda≈Ço siƒô zainstalowaƒá modu≈Çu.", skip_after=TRUE)
+    swirl_out("Nie uda≥o siÍ zainstalowaÊ modu≥u.", skip_after=TRUE)
   }
   
   # Delete unzipped directory
@@ -151,9 +151,9 @@ zip_course <- function(path, dest=NULL){
   zip_dir <- paste0(dest, "/", "swirl_zip_creator_TEMP")
   dir.create(zip_dir)
   if(file.copy(path, zip_dir, recursive=TRUE)){
-    swirl_out("Katalog modu≈Çu zosta≈Ç poprawnie rozpakowany!", skip_after=TRUE)
+    swirl_out("Katalog modu≥u zosta≥ poprawnie rozpakowany!", skip_after=TRUE)
   } else {
-    swirl_out("Nie uda≈Ço siƒô zainstalowaƒá modu≈Çu.", skip_after=TRUE)
+    swirl_out("Nie uda≥o siÍ zainstalowaÊ modu≥u.", skip_after=TRUE)
   }
   
   # Change directory to folder to be zipped
@@ -186,9 +186,9 @@ uninstall_course <- function(course_name){
   path <- file.path(get_swirl_option("courses_dir"), make_pathname(course_name))
   if(file.exists(path)){
     unlink(path, recursive=TRUE, force=TRUE)
-    message("Modu≈Ç zosta≈Ç poprawnie odinstalowany!")
+    message("Modu≥ zosta≥ poprawnie odinstalowany!")
   } else {
-    stop("Nie znaleziono modu≈Çu!")
+    stop("Nie znaleziono modu≥u!")
   }
   invisible()
 }
@@ -212,9 +212,9 @@ uninstall_all_courses <- function(){
   
   if(file.exists(path)){
     unlink(path, recursive=TRUE, force=TRUE)
-    message("Wszystkie modu≈Çy zosta≈Çy poprawnie odinstalowane!")
+    message("Wszystkie modu≥y zosta≥y poprawnie odinstalowane!")
   } else {
-    stop("Nie znaleziono modu≈Ç√≥w!")
+    stop("Nie znaleziono modu≥Ûw!")
   }
   
   dir.create(path, showWarnings = FALSE)
@@ -244,10 +244,10 @@ uninstall_all_courses <- function(){
 #' @family InstallCourses
 install_course_zip <- function(path, multi=FALSE, which_course=NULL){
   if(!is.logical(multi) || is.na(multi)) {
-    stop("Argument 'multi' musi mieƒá warto≈õƒá TRUE lub FALSE.")
+    stop("Argument 'multi' musi mieÊ wartoúÊ TRUE lub FALSE.")
   }
   if(!multi && !is.null(which_course)) {
-    stop("Argument 'which_course' powinien byƒá podany tylko gdy 'multi' ma warto≈õƒá TRUE.")
+    stop("Argument 'which_course' powinien byÊ podany tylko gdy 'multi' ma wartoúÊ TRUE.")
   }
   if(multi){
     # Find list of files not in top level directory
@@ -266,14 +266,14 @@ install_course_zip <- function(path, multi=FALSE, which_course=NULL){
                    nomatch=-1)
       nomatch <- match_ind < 0
       if(any(nomatch)) {
-        stop("Nie znaleziono modu≈Çu ", sQuote(which_course[nomatch][1]), " we wskazanym katalogu. Uwaga, nazwy modu≈Ç√≥w sƒÖ \"case sensitive\"!")
+        stop("Nie znaleziono modu≥u ", sQuote(which_course[nomatch][1]), " we wskazanym katalogu. Uwaga, nazwy modu≥Ûw sπ \"case sensitive\"!")
       }
       dirs_to_copy <- dirs_to_copy[match_ind]
     }
     if(file.copy(dirs_to_copy, get_swirl_option("courses_dir"), recursive=TRUE)){
-      swirl_out("Modu≈Ç zainstalowany poprawnie!", skip_after=TRUE)
+      swirl_out("Modu≥ zainstalowany poprawnie!", skip_after=TRUE)
     } else {
-      swirl_out("Nie uda≈Ço siƒô zainstalowaƒá modu≈Çu.", skip_after=TRUE)
+      swirl_out("Nie uda≥o siÍ zainstalowaÊ modu≥u.", skip_after=TRUE)
     }
     
     # Delete unzipped directory
@@ -309,14 +309,14 @@ install_course_directory <- function(path){
   
   # Check to make sure there are fewer than 1000 files in course directory
   if(length(garbage_result) > 1000){
-    stop("Za du≈ºo plik√≥w w katalogu modu≈Çu!")
+    stop("Za duøo plikÛw w katalogu modu≥u!")
   }
   
   # Copy files
   if(file.copy(path, get_swirl_option("courses_dir"), recursive=TRUE)){
-    swirl_out("Modu≈Ç zainstalowany poprawnie!", skip_after=TRUE)
+    swirl_out("Modu≥ zainstalowany poprawnie!", skip_after=TRUE)
   } else {
-    swirl_out("Nie uda≈Ço siƒô zainstalowaƒá modu≈Çu.", skip_after=TRUE)
+    swirl_out("Nie uda≥o siÍ zainstalowaÊ modu≥u.", skip_after=TRUE)
   }
   
   invisible()

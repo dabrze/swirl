@@ -442,8 +442,8 @@ val_has_length <- function(len){
   e <- get("e", parent.frame())
   try(n <- as.integer(len), silent=TRUE)
   if(is.na(n)){
-    stop(message=paste("BUG: wskazana dÅ‚ugoÅ›Ä‡", len,
-                                 "nie jest liczbÄ… calkowitÄ…."))
+    stop(message=paste("BUG: wskazana d³ugoœæ", len,
+                                 "nie jest liczb¹ calkowit¹."))
   }
   results <- expectThat(length(e$val), equals(n, label=n), 
                         label=paste0("length(c(", toString(e$val), "))"))                                                   

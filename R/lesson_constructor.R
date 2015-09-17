@@ -3,7 +3,7 @@ lesson <- function(df, lesson_name=NULL, course_name=NULL, author=NULL,
                    type=NULL, organization=NULL, version=NULL, partner=NULL) {
   
   if(!is.data.frame(df)) 
-    stop("Argument 'df' musi byÄ‡ typu data.frame!")
+    stop("Argument 'df' musi byæ typu data.frame!")
   
   # Adding secondary class of data.frame allows lessons to retain data.frame attributes (e.g. dim())
   structure(df, lesson_name=lesson_name, course_name=course_name, author=author,

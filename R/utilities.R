@@ -122,28 +122,28 @@ loadDependencies <- function(lesson_dir) {
     packages_as_chars <- setdiff(readLines(depends, warn=FALSE), "")
     # If the dependson file is empty, then proceed with lesson
     if(length(packages_as_chars) == 0) return(TRUE)
-    swirl_out("Attempting to load lesson dependencies...")
+    swirl_out("Próbujê za³adowaæ zale¿noœci potrzebne do realizacji lekcji...")
     for(p in packages_as_chars) {
       p <- gsub("^\\s+|\\s+$", "", p) # trim leading and trailing whitespace 
       if(suppressPackageStartupMessages(
         suppressWarnings(
           suppressMessages(require(p, character.only=TRUE, quietly=TRUE))))) {
-        swirl_out("Package", sQuote(p), "loaded correctly!")
+        swirl_out("Paczka", sQuote(p), "zosta³a poprawnie za³adowana!")
       } else {
-        swirl_out("This lesson requires the", sQuote(p), 
-                  "package. Would you like me to install it for you now?")
-        yn <- select.list(choices=c("Yes", "No"), graphics=FALSE)
-        if(yn == "Yes") {
-          swirl_out("Trying to install package", sQuote(p), "now...")
+        swirl_out("Ta lekcja wymaga paczki", sQuote(p), 
+                  ". Czy mam j¹ zainstalowaæ za Ciebie?")
+        yn <- select.list(choices=c("Tak", "Nie"), graphics=FALSE)
+        if(yn == "Tak") {
+          swirl_out("Probujê zainstalowac paczkê", sQuote(p), "...")
           install.packages(p, quiet=TRUE)
           if(suppressPackageStartupMessages(
             suppressWarnings(
               suppressMessages(require(p, 
                                        character.only=TRUE, 
                                        quietly=TRUE))))) {
-            swirl_out("Package", sQuote(p), "loaded correctly!")
+            swirl_out("Paczka", sQuote(p), "osta³a poprawnie za³adowana!")
           } else {
-            swirl_out("Could not install package", paste0(sQuote(p), "!"))
+            swirl_out("Nie mog³em zainstalowaæ paczki", paste0(sQuote(p), "!"))
             return(FALSE)
           }
         } else {
@@ -175,11 +175,11 @@ complete_part <- function(e) {
       if(file.exists(correct_script_path)) {
         try(source(correct_script_path))
       } else {
-        stop("Correct script not found at ", correct_script_path)
+        stop("Nie znaleziono poprawnego skryptu pod œcie¿k¹ ", correct_script_path)
       }
     }
   }
-  message("Completing the first part of the lesson for you...\n")
+  message("Uzupe³niam pierwsz¹ czêœæ lekcji za Ciebie...\n")
   apply(les, 1, exec_cmd)
   invisible()
 }

@@ -164,7 +164,7 @@ runTest.newcmd <- function(keyphrase,e){
     return(TRUE)
   } else  
     if (ansResults$passed && !callResults$passed){
-      swirl_out("Nie tego siÄ™ spodziewaÅ‚em, ale zdaje siÄ™ dziaÅ‚aÄ‡.")
+      swirl_out("Nie tego siê spodziewa³em, ale zdaje siê dzia³aæ.")
       swirl_out(callResults$message)
       #todo
       #following line is temporary fix to create correct vars for future ques if needed
@@ -184,7 +184,7 @@ runTest.swirl1cmd <- function(keyphrase,e){
     return(TRUE)
   } else  
     if (ans.is.correct && !call.is.correct){
-     swirl_out("Nie tego siÄ™ spodziewaÅ‚em, ale zdaje siÄ™ dziaÅ‚aÄ‡.")
+     swirl_out("Nie tego siê spodziewa³em, ale zdaje siê dzia³aæ.")
       #following line is temporary fix to create correct vars for future ques if needed
       eval(correct.expr,globalenv())
       return(TRUE)
@@ -357,7 +357,7 @@ runTest.val_length <- function(keyphrase, e){
   try(n <- as.integer(rightside(keyphrase)), silent=TRUE)
   if(is.na(n)){
     stop(message=paste("BUG: prawa strona", keyphrase,
-                                 "nie jest liczbÄ… calkowitÄ…."))
+                                 "nie jest liczb¹ calkowit¹."))
   }
   results <- expectThat(length(e$val), equals(n, label=n), 
                         label=paste0("length(c(", toString(e$val), "))"))                                                   
@@ -447,7 +447,7 @@ in_range <- function(range, label=NULL){
       isTRUE(number >= range[1]) && 
       isTRUE(number <= range[2])
     expectation(identical(isOK, TRUE), 
-                str_c("nie jest pomiÄ™dzy ", range[1], " i ", range[2]))
+                str_c("nie jest pomiêdzy ", range[1], " i ", range[2]))
   }
 }
 
