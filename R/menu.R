@@ -205,7 +205,7 @@ welcome.test <- function(e, ...){
 # Default version.
 welcome.default <- function(e, ...){
   swirl_out("Witaj w narzêdziu swirl!")
-  swirl_out("Zaloguj siê. Jeœli ju¿ wczeœniej korzysta³eœ z swirla na tym komputerze, u¿yj tej samej nazwy u¿ytkownika co poprzednio. Jeœli jesteœ tu nowy, wymyœl jak¹œ unikaln¹ nazwê uzytkownika.", skip_after=TRUE)
+  swirl_out("Zaloguj siê. Jeœli ju¿ wczeœniej korzysta³eœ z swirla na tym komputerze, u¿yj tej samej nazwy u¿ytkownika co poprzednio.\nJeœli jesteœ tu nowy, wymyœl jak¹œ unikaln¹ nazwê uzytkownika.", skip_after=TRUE)
   resp <- readline("Jak mam Ciê zwaæ? ")
   while(str_detect(resp, '[[:punct:]]')) {
     swirl_out("Proszê nie u¿ywaj cudzys³ów, ani innych znaków interpunkcyjnych w nazwie u¿ytkownika.",
@@ -220,17 +220,17 @@ welcome.default <- function(e, ...){
 # @param e persistent environment used here only for its class attribute
 # 
 housekeeping.default <- function(e){
-  swirl_out(paste0("Dziêki, ", e$usr,". Zanim zaczniesz pierwsz¹ lekcjê, ustalmy kilka spraw. Po pierwsze kiedy widzisz '...', oznacza to, ¿e mo¿esz wcisn¹æ Enter, by iœæ dalej."))
-  readline("\n...  <-- Tak, to w³aœnie ten moment")
-  swirl_out("Hello, and, again, welcome to the Aperture Science Computer-Aided Enrichment Center.")
-  readline("\n...")
+  swirl_out(paste0("Dziêki, ", e$usr,". Zanim zaczniesz pierwsz¹ lekcjê, ustalmy kilka spraw. Po pierwsze kiedy widzisz '...', oznacza to, ¿e mo¿esz wcisn¹æ Enter, by iœæ dalej.\n"))
+  readline("...  <-- Tak, to w³aœnie ten moment")
+  swirl_out("Hello, and, again, welcome to the Aperture Science Computer-Aided Enrichment Center.\n")
+  readline("...")
   swirl_out("Hmmm... nie wiem sk¹d to siê wziê³o...\n Tak czy inaczej, gdy zobaczysz 'ODPOWIED:', kursor konsoli R (>) lub gdy zostaniesz poproszony o wybranie elementu z listy, oznacza to, ¿e nadszed³ czas na wprowadzenie odpowiedzi i wcisniêcie Enter.")
   select.list(c("Dalej.", "Kontynuuj.", "Jedziemy, jedziemy!"),
               title="\nWybierz 1, 2, lub 3 i wciœnij Enter", graphics=FALSE)
   swirl_out("Mo¿esz wyjœæ ze swirla i wróciæ do konsoli R w dowolnej chwili - wystaczy wcisn¹æ Esc. Jeœli jesteœ w trybie wprowadzania odpowiedzi, wpisz bye() by wyjœæ i zachowaæ swój postêp w lekcji.")
   info()
-  swirl_out("Zaczynamy!", skip_before=FALSE)
-  readline("\n...")
+  swirl_out("Zaczynamy!\n", skip_before=FALSE)
+  readline("...")
 }
 
 housekeeping.test <- function(e){}
@@ -383,7 +383,7 @@ courseDir.default <- function(e){
 }
 
 progressDir.default <- function(e) {
-  file.path(find.package("swirl"), "user_data")
+  file.path(find.package("swirl.pl"), "user_data")
 }
 
 # Default for determining the user

@@ -246,7 +246,7 @@ restart <- function(){invisible()}
 #' | Leaving swirl now. Type swirl() to resume.
 #' }
 info <- function(){
-  swirl_out("W trybie wprowadzanie koemnd R (>):")
+  swirl_out("W trybie wprowadzania komend R (>):")
   swirl_out("-- Wpisanie skip(), pozwala (czasami) pomin¹æ aktualne pytanie.", skip_before=FALSE)
   swirl_out("-- Wpisanie play() pozwala powróciæ do konsoli R i poeksperymentowaæ na w³asn¹ rêkê; swirl zignoruje to co bêdziesz wtedy robi³...", skip_before=FALSE)
   swirl_out("-- A¯ DO MOMENTU GDY wpiszesz nxt() co sprawi, ¿e swirl znowu zacznie siê interesowaæ tym co robisz.", skip_before=FALSE)

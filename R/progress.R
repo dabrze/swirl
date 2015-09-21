@@ -23,7 +23,7 @@ delete_progress <- function(user, path = NULL){
 
   # Find path to user data
   if(is.null(path)) {
-    path <- system.file("user_data", user, package = "swirl")  
+    path <- system.file("user_data", user, package = "swirl.pl")  
   }
   
   # Delete all files within a user folder

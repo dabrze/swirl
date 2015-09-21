@@ -14,7 +14,7 @@
 #' set_swirl_options(courses_dir = getwd())
 #' 
 #' # Install courses in the default course directory
-#' set_swirl_options(courses_dir = file.path(system.file("Courses", package = "swirl")))
+#' set_swirl_options(courses_dir = file.path(system.file("Courses", package = "swirl.pl")))
 #' }
 set_swirl_options <- function(...){
   args <- list(...)
@@ -97,7 +97,7 @@ delete_swirl_option <- function(name){
 #' @importFrom rappdirs user_data_dir
 opts_path <- function(){
   # Find user data directory
-  udd <- user_data_dir(appname = "swirl", appauthor = "swirldev", roaming = TRUE)
+  udd <- user_data_dir(appname = "swirl.pl", appauthor = "swirldev", roaming = TRUE)
   
   # If the directory doesn't exist, create it
   if(!file.exists(udd)){
