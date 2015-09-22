@@ -18,7 +18,7 @@ Contrary to swirl, swirl.pl cannot be installed from CRAN. At the moment, you ca
 ```
 install.packages("devtools")
 devtools::install_github("dabrze/swirl")
-library(swirl)
+library(swirl.pl)
 swirl()
 ```
 
@@ -26,3 +26,8 @@ swirl()
 
 If you'd like to get involved in the Polish version of swirl, please fork this repository and submit a pull request with your proposed changes. For the one and only true swirl, please visit: [https://github.com/swirldev/swirl](https://github.com/swirldev/swirl). I am happy to chat if you have any questions about the source code.
 
+## Using swirl in the classroom
+
+Instructors around the world are using swirl in their classrooms. We think this is awesome. If you're an instructor, please feel free to do the same -- free of charge. While your students may be paying to take your course or attend your institution, we simply ask that you don't charge people *directly* for the use of our software or instructional content.
+
+If you are not sure about a particular use case, don't hesitate to send us an email at info@swirlstats.com.
