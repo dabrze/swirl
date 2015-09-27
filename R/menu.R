@@ -237,7 +237,7 @@ housekeeping.test <- function(e){}
 
 # A stub. Eventually this should be a full menu
 inProgressMenu.default <- function(e, choices){
-  nada <- "Nie. Zacznijmy coś nowego."
+  nada <- "Nie"
   swirl_out("Czy chciałbyś kontynuować którąś z tych lekcji?")
   selection <- swirl_select.list(c(choices, nada), graphics=FALSE)
   # return a blank if the user rejects all choices
