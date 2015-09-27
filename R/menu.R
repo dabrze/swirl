@@ -61,28 +61,28 @@ mainMenu.default <- function(e){
       if(length(coursesU)==0){
         suggestions <- yaml.load_file(file.path(courseDir(e), "suggested_courses.yaml"))
         choices <- sapply(suggestions, function(x)paste0(x$Course, ": ", x$Description))
-        swirl_out("Aby rozpocz¹æ, musisz mieæ zainstalowany jakiœ modu³. Mogê zainstalowaæ za Ciebie",
-                  "modu³ z Internetu albo wys³aæ Ciê na stronê internetow¹ z modu³ami",
+        swirl_out("Aby rozpoczÄ…Ä‡, musisz mieÄ‡ zainstalowany jakiÅ› moduÅ‚. MogÄ™ zainstalowaÄ‡ za Ciebie",
+                  "moduÅ‚ z Internetu albo wysÅ‚aÄ‡ CiÄ™ na stronÄ™ internetowÄ… z moduÅ‚ami",
                   "(https://github.com/dabrze/swirl_courses).",
-                  "(Jeœli nie jestes po³¹czony z Internetem, wpisz 0 aby wyjœæ.)")
-        choices <- c(choices, "Niczego za mnie nie instaluj. Sam to zrobiê.")
-        choice <- select.list(choices, graphics=FALSE)
+                  "(JeÅ›li nie jestes poÅ‚Ä…czony z Internetem, wpisz 0 aby wyjÅ›Ä‡.)")
+        choices <- c(choices, "Niczego za mnie nie instaluj. Sam to zrobiÄ™.")
+        choice <- swirl_select.list(choices, graphics=FALSE)
         n <- which(choice == choices)
         if(length(n) == 0)return(FALSE)
         if(n < length(choices)){
           repeat {
             temp <- try(eval(parse(text=suggestions[[n]]$Install)), silent=TRUE)
             if(is(temp, "try-error")){
-              swirl_out("Przepraszam, nie by³em w stanie œci¹gn¹æ ", sQuote(choice),
-                        ". Czy jesteœ pewien, ¿e jesteœ po³¹czony z Internetem?",
-                        "Jesli tak, czy mam spróbowaæ jeszcze raz czy wolisz odwiedziæ",
-                        "repozytorium i spróbowaæ zainstalowaæ modu³ rêcznie? Wpisz 0, aby wyjœæ")
-              ch <- c("Spróbuj jeszcze raz!", 
-                      "Przenieœ mnie na stronê repozytorium - spróbujê sam zainstalowaæ modu³.")
-              resp <- select.list(ch, graphics=FALSE)
+              swirl_out("Przepraszam, nie byÅ‚em w stanie Å›ciÄ…gnÄ…Ä‡ ", sQuote(choice),
+                        ". Czy jesteÅ› pewien, Å¼e jesteÅ› poÅ‚Ä…czony z Internetem?",
+                        "Jesli tak, czy mam sprÃ³bowaÄ‡ jeszcze raz czy wolisz odwiedziÄ‡",
+                        "repozytorium i sprÃ³bowaÄ‡ zainstalowaÄ‡ moduÅ‚ rÄ™cznie? Wpisz 0, aby wyjÅ›Ä‡")
+              ch <- c("SprÃ³buj jeszcze raz!", 
+                      "PrzenieÅ› mnie na stronÄ™ repozytorium - sprÃ³bujÄ™ sam zainstalowaÄ‡ moduÅ‚.")
+              resp <- swirl_select.list(ch, graphics=FALSE)
               if(resp == "") return(FALSE)
               if(resp == ch[2]) {
-                swirl_out("OK. Otwieram repozytorium modu³ów w Twojej przegl¹darce.")
+                swirl_out("OK. Otwieram repozytorium moduÅ‚Ã³w w Twojej przeglÄ…darce.")
                 browseURL("https://github.com/dabrze/swirl_courses")
                 return(FALSE)
               }
@@ -96,7 +96,7 @@ mainMenu.default <- function(e){
                                function(x)length(dir(file.path(courseDir(e),x)))>0))
           coursesU <- coursesU[idx]
         } else {
-          swirl_out("OK. Otwieram repozytorium modu³ów w Twojej przegl¹darce.")
+          swirl_out("OK. Otwieram repozytorium moduÅ‚Ã³w w Twojej przeglÄ…darce.")
           browseURL("https://github.com/dabrze/swirl_courses")
           return(FALSE)
         }
@@ -107,7 +107,7 @@ mainMenu.default <- function(e){
       while(lesson == ""){
         course <- courseMenu(e, coursesR)
         if(!is.null(names(course)) && names(course)=="repo") {
-          swirl_out("OK. Otwieram repozytorium modu³ów w Twojej przegl¹darce.")
+          swirl_out("OK. Otwieram repozytorium moduÅ‚Ã³w w Twojej przeglÄ…darce.")
           browseURL("https://github.com/dabrze/swirl_courses")
           return(FALSE)
         }
@@ -204,13 +204,13 @@ welcome.test <- function(e, ...){
 
 # Default version.
 welcome.default <- function(e, ...){
-  swirl_out("Witaj w narzêdziu swirl!")
-  swirl_out("Zaloguj siê. Jeœli ju¿ wczeœniej korzysta³eœ z swirla na tym komputerze, u¿yj tej samej nazwy u¿ytkownika co poprzednio.\nJeœli jesteœ tu nowy, wymyœl jak¹œ unikaln¹ nazwê uzytkownika.", skip_after=TRUE)
-  resp <- readline("Jak mam Ciê zwaæ? ")
+  swirl_out("Witaj w narzÄ™dziu swirl!")
+  swirl_out("Zaloguj siÄ™. JeÅ›li juÅ¼ wczeÅ›niej korzystaÅ‚eÅ› z swirla na tym komputerze, uÅ¼yj tej samej nazwy uÅ¼ytkownika co poprzednio.\nJeÅ›li jesteÅ› tu nowy, wymyÅ›l jakÄ…Å› unikalnÄ… nazwÄ™ uzytkownika.", skip_after=TRUE)
+  resp <- swirl_readline("Jak mam CiÄ™ zwaÄ‡? ")
   while(str_detect(resp, '[[:punct:]]')) {
-    swirl_out("Proszê nie u¿ywaj cudzys³ów, ani innych znaków interpunkcyjnych w nazwie u¿ytkownika.",
+    swirl_out("ProszÄ™ nie uÅ¼ywaj cudzysÅ‚Ã³w, ani innych znakÃ³w interpunkcyjnych w nazwie uÅ¼ytkownika.",
               skip_after = TRUE)
-    resp <- readline("Jak mam Ciê zwaæ? ")
+    resp <- swirl_readline("Jak mam CiÄ™ zwaÄ‡? ")
   }
   return(resp)
 }
@@ -220,26 +220,26 @@ welcome.default <- function(e, ...){
 # @param e persistent environment used here only for its class attribute
 # 
 housekeeping.default <- function(e){
-  swirl_out(paste0("Dziêki, ", e$usr,". Zanim zaczniesz pierwsz¹ lekcjê, ustalmy kilka spraw. Po pierwsze kiedy widzisz '...', oznacza to, ¿e mo¿esz wcisn¹æ Enter, by iœæ dalej.\n"))
-  readline("...  <-- Tak, to w³aœnie ten moment")
+  swirl_out(paste0("DziÄ™ki, ", e$usr,". Zanim zaczniesz pierwszÄ… lekcjÄ™, ustalmy kilka spraw. Po pierwsze kiedy widzisz '...', oznacza to, Å¼e moÅ¼esz wcisnÄ…Ä‡ Enter, by iÅ›Ä‡ dalej.\n"))
+  swirl_readline("...  <-- Tak, to wÅ‚aÅ›nie ten moment")
   swirl_out("Hello, and, again, welcome to the Aperture Science Computer-Aided Enrichment Center.\n")
-  readline("...")
-  swirl_out("Hmmm... nie wiem sk¹d to siê wziê³o...\n Tak czy inaczej, gdy zobaczysz 'ODPOWIED:', kursor konsoli R (>) lub gdy zostaniesz poproszony o wybranie elementu z listy, oznacza to, ¿e nadszed³ czas na wprowadzenie odpowiedzi i wcisniêcie Enter.")
-  select.list(c("Dalej.", "Kontynuuj.", "Jedziemy, jedziemy!"),
-              title="\nWybierz 1, 2, lub 3 i wciœnij Enter", graphics=FALSE)
-  swirl_out("Mo¿esz wyjœæ ze swirla i wróciæ do konsoli R w dowolnej chwili - wystaczy wcisn¹æ Esc. Jeœli jesteœ w trybie wprowadzania odpowiedzi, wpisz bye() by wyjœæ i zachowaæ swój postêp w lekcji.")
+  swirl_readline("...")
+  swirl_out("Hmmm... nie wiem skÄ…d to siÄ™ wziÄ™Å‚o...\n Tak czy inaczej, gdy zobaczysz 'ODPOWIEDÅ¹:', kursor konsoli R (>) lub gdy zostaniesz poproszony o wybranie elementu z listy, oznacza to, Å¼e nadszedÅ‚ czas na wprowadzenie odpowiedzi i wcisniÄ™cie Enter.")
+  swirl_select.list(c("Dalej.", "Kontynuuj.", "Jedziemy, jedziemy!"),
+              title="\nWybierz 1, 2, lub 3 i wciÅ›nij Enter", graphics=FALSE)
+  swirl_out("MoÅ¼esz wyjÅ›Ä‡ ze swirla i wrÃ³ciÄ‡ do konsoli R w dowolnej chwili - wystaczy wcisnÄ…Ä‡ Esc. JeÅ›li jesteÅ› w trybie wprowadzania odpowiedzi, wpisz bye() by wyjÅ›Ä‡ i zachowaÄ‡ swÃ³j postÄ™p w lekcji.")
   info()
   swirl_out("Zaczynamy!\n", skip_before=FALSE)
-  readline("...")
+  swirl_readline("...")
 }
 
 housekeeping.test <- function(e){}
 
 # A stub. Eventually this should be a full menu
 inProgressMenu.default <- function(e, choices){
-  nada <- "Nie. Zacznijmy coœ nowego."
-  swirl_out("Czy chcia³byœ kontynuowaæ któr¹œ z tych lekcji?")
-  selection <- select.list(c(choices, nada), graphics=FALSE)
+  nada <- "Nie. Zacznijmy coÅ› nowego."
+  swirl_out("Czy chciaÅ‚byÅ› kontynuowaÄ‡ ktÃ³rÄ…Å› z tych lekcji?")
+  selection <- swirl_select.list(c(choices, nada), graphics=FALSE)
   # return a blank if the user rejects all choices
   if(identical(selection, nada))selection <- ""
   return(selection)
@@ -251,10 +251,10 @@ inProgressMenu.test <- function(e, choices) {
 
 # A stub. Eventually this should be a full menu
 courseMenu.default <- function(e, choices){
-  repo_option <- "Take me to the swirl course repository!"
+  repo_option <- "PrzenieÅ› mnie do repozytorium swirl.pl!"
   choices <- c(choices, repo = repo_option)
-  swirl_out("Please choose a course, or type 0 to exit swirl.")
-  return(select.list(choices, graphics=FALSE))
+  swirl_out("Wybierz kurs... lub wpisz 0 aby wyjÅ›Ä‡.")
+  return(swirl_select.list(choices, graphics=FALSE))
 }
 
 courseMenu.test <- function(e, choices) {
@@ -263,8 +263,8 @@ courseMenu.test <- function(e, choices) {
 
 # A stub. Eventually this should be a full menu
 lessonMenu.default <- function(e, choices){
-  swirl_out("Wybierz lekcjê lub wpisz 0 by powróciæ do menu.")
-  return(select.list(choices, graphics=FALSE))
+  swirl_out("Wybierz lekcjÄ™ lub wpisz 0 by powrÃ³ciÄ‡ do menu.")
+  return(swirl_select.list(choices, graphics=FALSE))
 }
 
 lessonMenu.test <- function(e, choices) {

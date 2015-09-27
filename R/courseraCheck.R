@@ -11,14 +11,14 @@ courseraCheck <- function(e){
 
   tt <- c(rep(letters, 3), seq(100))
   swirl_out("Are you currently enrolled in the Coursera course associated with this lesson?")
-  yn <- select.list(c("Yes","No"), graphics=FALSE)
+  yn <- swirl_select.list(c("Yes","No"), graphics=FALSE)
   if(yn=="No")return()
   ss <- lapply(1:2, function(i) {
     paste0(sample(tt, sample(seq(400), 1), replace=TRUE), collapse="")
   })
   swirl_out("Would you like me to notify Coursera that you've completed this lesson?",
             "If so, I'll need to get some more info from you.")
-  choice <- select.list(c("Yes","No","Maybe later"), graphics=FALSE)
+  choice <- swirl_select.list(c("Yes","No","Maybe later"), graphics=FALSE)
   if(choice=="No") return()
   # Begin submission loop
   ok <- FALSE
@@ -102,13 +102,13 @@ courseraCheck <- function(e){
             "I've placed the file in the following directory:",
             skip_after=TRUE)
   message(getwd(), "\n")
-  readline("...")
+  swirl_readline("...")
 }
 
 # Returns TRUE if user would like to retry, FALSE if not
 retry <- function() {
   swirl_out("Would you like to retry automatic submission or just submit manually?")
-  ans <- select.list(c("Retry automatic submission", "Submit manually"), graphics=FALSE)
+  ans <- swirl_select.list(c("Retry automatic submission", "Submit manually"), graphics=FALSE)
   # Return TRUE if user would like to retry
   return(ans == "Retry automatic submission")
 }
@@ -120,7 +120,7 @@ get_courseid <- function() {
             "then your course ID would be 'rprog-001' (without the quotes).",
             skip_after=TRUE)
   repeat {
-    courseid <- readline("Course ID: ")
+    courseid <- swirl_readline("Course ID: ")
     # Remove quotes if there are any
     courseid <- gsub("\'|\"", "", courseid)
     # Set up test cases
@@ -171,8 +171,8 @@ getCreds <- function(e) {
   while(!confirmed) {
     if(!file.exists(credfile) || need2fix) {
       courseid <- get_courseid()
-      email <- readline("Submission login (email): ")
-      passwd <- readline("Submission password: ")
+      email <- swirl_readline("Submission login (email): ")
+      passwd <- swirl_readline("Submission password: ")
       writeLines(c(courseid, email, passwd), credfile)
       r <- c(courseid = courseid, email = email, passwd = passwd)
     } else {
@@ -185,7 +185,7 @@ getCreds <- function(e) {
             "\nSubmission password: ", r['passwd'])
     yn <- c("Yes, go ahead!", 
             "No, I need to change something.")
-    confirmed <- identical(select.list(yn, graphics=FALSE), yn[1])
+    confirmed <- identical(swirl_select.list(yn, graphics=FALSE), yn[1])
     if(!confirmed) need2fix <- TRUE
   }
   return(r)

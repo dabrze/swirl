@@ -20,7 +20,7 @@ do_reset.default <- function(e) {
   e$playing <- FALSE
   e$reset <- TRUE
   e$iptr <- 2
-  swirl_out("Zresetowa³em skrypt do pierwotnego stanu. Jeœli nie odœwie¿y³ siê od razu, najprawdopodobniej musisz na niego klikn¹æ.", 
+  swirl_out("ZresetowaÅ‚em skrypt do pierwotnego stanu. JeÅ›li nie odÅ›wieÅ¼yÅ‚ siÄ™ od razu, najprawdopodobniej musisz na niego kliknÄ…Ä‡.", 
             skip_after = TRUE)
 }
 
@@ -30,17 +30,17 @@ do_submit.default <- function(e) {
   e$script_contents <- readLines(e$script_temp_path, warn = FALSE)
   # Save expr to e
   e$expr <- try(parse(text = e$script_contents), silent = TRUE)
-  swirl_out("Sprawdzam Twój skrypt...", skip_after = TRUE)
+  swirl_out("Sprawdzam TwÃ³j skrypt...", skip_after = TRUE)
   try(source(e$script_temp_path))
 }
 
 do_play.default <- function(e) {
-  swirl_out("No dobra. IdŸ na plac zabaw i eksperymentuj ile wlezie. Wpisz nxt() kiedy bêdziesz gotowy na powrót do lekcji.", skip_after=TRUE)
+  swirl_out("No dobra. IdÅº na plac zabaw i eksperymentuj ile wlezie. Wpisz nxt() kiedy bÄ™dziesz gotowy na powrÃ³t do lekcji.", skip_after=TRUE)
   e$playing <- TRUE
 }
 
 do_main.default <- function(e) {
-  swirl_out("Wracam do g³ównego menu...")
+  swirl_out("Wracam do gÅ‚Ã³wnego menu...")
   # Remove the current lesson. Progress has been saved already.
   if(exists("les", e, inherits=FALSE)){
     rm("les", envir=e, inherits=FALSE)
@@ -48,5 +48,5 @@ do_main.default <- function(e) {
 }
 
 do_restart.default <- function(e) {
-  swirl_out("Tego jeszcze nie zaimplementowaliœmy...")
+  swirl_out("Tego jeszcze nie zaimplementowaliÅ›my...")
 }

@@ -9,7 +9,7 @@ args_specification.test <- function(e, ...) {
   targs <- list(...)
   # Check if appropriately named args exist
   if(is.null(targs$test_course) || is.null(targs$test_lesson)) {
-    stop("Musisz podaæ 'test_course' i 'test_lesson' ¿eby uruchomiæ tryb 'test'!")
+    stop("Musisz podaÄ‡ 'test_course' i 'test_lesson' Å¼eby uruchomiÄ‡ tryb 'test'!")
   } else {
     # Make available for use in menu functions
     e$test_lesson <- targs$test_lesson
@@ -18,7 +18,7 @@ args_specification.test <- function(e, ...) {
   # Check that 'from' is less than 'to' if they are both provided
   if(!is.null(targs$from) && !is.null(targs$to)) {
     if(targs$from >= targs$to) {
-      stop("Argument 'to' musi mieæ wartoœæ wiêksz¹ ni¿ argument 'from'!")
+      stop("Argument 'to' musi mieÄ‡ wartoÅ›Ä‡ wiÄ™kszÄ… niÅ¼ argument 'from'!")
     }
   }
   if(is.null(targs$from)) {

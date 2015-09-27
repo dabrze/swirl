@@ -96,7 +96,7 @@ swirl <- function(resume.class="default", ...){
 #' }
 bye <- function(){
   removeTaskCallback("mini")
-  swirl_out("Opuszczam swirla. Wpisz swirl(), aby powróciæ.", skip_after=TRUE)
+  swirl_out("Opuszczam swirla. Wpisz swirl(), aby powrÃ³ciÄ‡.", skip_after=TRUE)
   invisible()
 }
 
@@ -247,12 +247,12 @@ restart <- function(){invisible()}
 #' }
 info <- function(){
   swirl_out("W trybie wprowadzania komend R (>):")
-  swirl_out("-- Wpisanie skip(), pozwala (czasami) pomin¹æ aktualne pytanie.", skip_before=FALSE)
-  swirl_out("-- Wpisanie play() pozwala powróciæ do konsoli R i poeksperymentowaæ na w³asn¹ rêkê; swirl zignoruje to co bêdziesz wtedy robi³...", skip_before=FALSE)
-  swirl_out("-- A¯ DO MOMENTU GDY wpiszesz nxt() co sprawi, ¿e swirl znowu zacznie siê interesowaæ tym co robisz.", skip_before=FALSE)
-  swirl_out("-- Wpisanie bye() powoduje wyjœcie ze swirla. Twój postêp zostanie zachowany.", skip_before=FALSE)
-  swirl_out("-- Wpisanie main() przenosi do menu g³ównego swirla.", skip_before=FALSE)
-  swirl_out("-- Wpisanie info() wyœwietla opis, który w³aœnie koñczysz czytaæ.", skip_before=FALSE, skip_after=TRUE)
+  swirl_out("-- Wpisanie skip(), pozwala (czasami) pominÄ…Ä‡ aktualne pytanie.", skip_before=FALSE)
+  swirl_out("-- Wpisanie play() pozwala powrÃ³ciÄ‡ do konsoli R i poeksperymentowaÄ‡ na wÅ‚asnÄ… rÄ™kÄ™; swirl zignoruje to co bÄ™dziesz wtedy robiÅ‚...", skip_before=FALSE)
+  swirl_out("-- AÅ» DO MOMENTU GDY wpiszesz nxt() co sprawi, Å¼e swirl znowu zacznie siÄ™ interesowaÄ‡ tym co robisz.", skip_before=FALSE)
+  swirl_out("-- Wpisanie bye() powoduje wyjÅ›cie ze swirla. TwÃ³j postÄ™p zostanie zachowany.", skip_before=FALSE)
+  swirl_out("-- Wpisanie main() przenosi do menu gÅ‚Ã³wnego swirla.", skip_before=FALSE)
+  swirl_out("-- Wpisanie info() wyÅ›wietla opis, ktÃ³ry wÅ‚aÅ›nie koÅ„czysz czytaÄ‡.", skip_before=FALSE, skip_after=TRUE)
   invisible()
 }
 
@@ -272,7 +272,7 @@ resume.default <- function(e, ...){
   args_specification(e, ...)
   
   esc_flag <- TRUE
-  on.exit(if(esc_flag)swirl_out("Opuszczam swirla. Wpisz swirl(), aby powróciæ.", skip_after=TRUE))
+  on.exit(if(esc_flag)swirl_out("Opuszczam swirla. Wpisz swirl(), aby powrÃ³ciÄ‡.", skip_after=TRUE))
   # Trap special functions
   if(uses_func("info")(e$expr)[[1]]){
     esc_flag <- FALSE
@@ -319,10 +319,10 @@ resume.default <- function(e, ...){
         # Source the correct script
         try(source(correct_script_path))
         # Inform the user and open the correct script
-        swirl_out("I just sourced the following script, which demonstrates one possible solution.",
+        swirl_out("OtworzyÅ‚em wÅ‚aÅ›nie skrypt z moÅ¼liwym rozwiÄ…zaniem.",
                   skip_after=TRUE)
         file.edit(correct_script_path)
-        readline("Press Enter when you are ready to continue...")
+        swirl_readline("WciÅ›nij Enter kiedy bÄ™dziesz gotowy do kontynuowania...")
       }
       
     # If this is not a script question...
@@ -344,7 +344,7 @@ resume.default <- function(e, ...){
       ce <- as.list(ce)
       
       # Inform the user and expose the correct answer
-      swirl_out("Wprowadzam poprawn¹ odpowiedŸ za Ciebie...",
+      swirl_out("Wprowadzam poprawnÄ… odpowiedÅº za Ciebie...",
                 skip_after=TRUE)
       message("> ", e$current.row[, "CorrectAnswer"])
 
@@ -394,7 +394,7 @@ resume.default <- function(e, ...){
   temp <- mainMenu(e)
   # If menu returns FALSE, the user wants to exit.
   if(is.logical(temp) && !isTRUE(temp)){
-    swirl_out("Opuszczam swirla. Wpisz swirl(), aby powróciæ.", skip_after=TRUE)
+    swirl_out("Opuszczam swirla. Wpisz swirl(), aby powrÃ³ciÄ‡.", skip_after=TRUE)
     esc_flag <- FALSE # To supress double notification
     return(FALSE)
   }
@@ -444,12 +444,12 @@ resume.default <- function(e, ...){
       if(exists("skips", e)) e$skips <- 0
       clearCustomTests()
       # Let user know lesson is complete
-      swirl_out("Dotar³eœ do koñca lekcji! Wracam do menu g³ównego...")
+      swirl_out("DotarÅ‚eÅ› do koÅ„ca lekcji! Wracam do menu gÅ‚Ã³wnego...")
       # let the user select another course lesson
       temp <- mainMenu(e)
       # if menu returns FALSE, user wants to quit.
       if(is.logical(temp) && !isTRUE(temp)){
-        swirl_out("Opuszczam swirla. Wpisz swirl(), aby powróciæ.", skip_after=TRUE)
+        swirl_out("Opuszczam swirla. Wpisz swirl(), aby powrÃ³ciÄ‡.", skip_after=TRUE)
         esc_flag <- FALSE # to supress double notification
         return(FALSE)
       }

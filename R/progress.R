@@ -18,7 +18,7 @@ saveProgress.default <- function(e){
 delete_progress <- function(user, path = NULL){
   # Make sure user entered a user name
   if(nchar(user) < 1){
-    stop("Podaj poprawn¹ nazwê u¿ytkownika.")
+    stop("Podaj poprawnÄ… nazwÄ™ uÅ¼ytkownika.")
   }
 
   # Find path to user data
@@ -29,8 +29,8 @@ delete_progress <- function(user, path = NULL){
   # Delete all files within a user folder
   if(file.exists(path)){
     invisible(file.remove(list.files(path, full.names = TRUE), recursive = TRUE))
-    message(paste0("Usuniêto postêp u¿ytkownika: ", user))
+    message(paste0("UsuniÄ™to postÄ™p uÅ¼ytkownika: ", user))
   } else {
-    message(paste0("Nie znaleziono u¿ytkownika: ", user))
+    message(paste0("Nie znaleziono uÅ¼ytkownika: ", user))
   }
 }

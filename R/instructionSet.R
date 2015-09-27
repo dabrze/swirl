@@ -21,31 +21,31 @@ present.default <- function(current.row, e){
 waitUser <- function(current.row, e)UseMethod("waitUser")
 
 waitUser.default <- function(current.row, e){
-  readline("...")
+  swirl_readline("...")
   e$row <- 1 + e$row
   e$iptr <- 1
 }
 
 waitUser.text_question <- function(current.row, e){
-  e$val <- str_trim(unlist(strsplit(readline("ODPOWIED: "),",")))
+  e$val <- str_trim(unlist(strsplit(swirl_readline("ODPOWIEDÅ¹: "),",")))
   e$iptr <- 1 + e$iptr
 }
 
 waitUser.text_many_question <- function(current.row, e){
-  e$val <- str_trim(unlist(strsplit(readline("ODPOWIED: "),",")))
+  e$val <- str_trim(unlist(strsplit(swirl_readline("ODPOWIEDÅ¹: "),",")))
   e$iptr <- 1 + e$iptr
 }
 
 waitUser.text_order_question <- function(current.row, e){
-  e$val <- str_trim(unlist(strsplit(readline("ODPOWIED: "),",")))
+  e$val <- str_trim(unlist(strsplit(swirl_readline("ODPOWIEDÅ¹: "),",")))
   e$iptr <- 1 + e$iptr
 }
 
 
 waitUser.video <- function(current.row, e){
-  response <- readline("Tak, Nie? ")
+  response <- swirl_readline("Tak, Nie? ")
   if(tolower(response) %in% c("t", "tak")){
-    swirl_out("Wpisz nxt(), aby kontynuowaæ")
+    swirl_out("Wpisz nxt(), aby kontynuowaÄ‡")
     e$prompt <- TRUE
     e$playing <- TRUE
     browseURL(current.row[,"VideoLink"])
@@ -62,7 +62,7 @@ waitUser.figure <- function(current.row, e){
     temp <- as.list(environment())
     e$snapshot <- c(e$snapshot, temp)
   })
-  readline("...")
+  swirl_readline("...")
   e$row <- 1 + e$row
   e$iptr <- 1
 }
@@ -157,7 +157,7 @@ testResponse.default <- function(current.row, e){
   if(is.na(tests) || tests == ""){
     results <- is(e, "dev")
     if(!results){
-      stop("BUG: Nie ma testów dla tego pytania!")
+      stop("BUG: Nie ma testÃ³w dla tego pytania!")
     }
   } else {
     tests <- str_trim(unlist(strsplit(tests,";")))
@@ -180,7 +180,7 @@ testResponse.default <- function(current.row, e){
     if(length(e$snapshot)>0)xfer(as.environment(e$snapshot), globalenv())
     mes <- tryAgain()
     if(is(current.row, "cmd_question") && !is(e, "datacamp")) {
-      mes <- paste(mes, "Lub wpisz info() aby zobaczyæ wiêcej opcji.")
+      mes <- paste(mes, "Lub wpisz info() aby zobaczyÄ‡ wiÄ™cej opcji.")
     }
     hint <- current.row[,"Hint"]
     post_result(e, passed = correct, feedback = mes, hint = if(is.na(hint)) NULL else hint)

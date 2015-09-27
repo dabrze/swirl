@@ -4,30 +4,29 @@ praise <- function() {
   
   if(is.null(swirl_is_fun) || isTRUE(swirl_is_fun)) {
     phrases <- c("No racza!",
-                 "NieŸle!",
+                 "NieÅºle!",
                  "Dajesz, dajesz!",
                  "Proste!",
                  "Mniam!",
-                 "Idealnie! O to chodzi³o!",
-                 "Jesteœ geniuszem!",
-                 "WyjdŸ za mnie!",
-                 "Jak tak dalej pójdzie to mo¿e zaliczysz ten przedmiot!",
+                 "Idealnie! O to chodziÅ‚o!",
+                 "JesteÅ› geniuszem!",
+                 "WyjdÅº za mnie!",
                  "Krok po kroku, krok po kroczku...",
                  "Super!",
                  "Jedziemy dalej!",
-                 "No dobra, ale na nastêpne pytanie to ju¿ na pewno nie odpowiesz.",
-                 "Eeee tam... Pofarci³o Ci siê...",
+                 "Yes, yes, yes!",
+                 "Eeee tam... PofarciÅ‚o Ci siÄ™ ;)",
                  "Brawo!",
                  "\\m/>.<\\m/",
-                 "No proszê!",
-                 "Æwiczenie czyni mistrza!",
-                 "Doprawdy pyszna herbatka, nie s¹dzisz?",
-                 "Jaram siê jak pochodnia!",
+                 "No proszÄ™!",
+                 "Ä†wiczenie czyni mistrza!",
+                 "Doprawdy pyszna herbatka, nie sÄ…dzisz?",
+                 "Jaram siÄ™ jak pochodnia!",
                  "No i o to chodzi!",
                  "Baja!",
-                 "Ja! Uwielbiam Ciê! Ty jesteœ tu! I dajesz radê!")
+                 "Ja! Uwielbiam CiÄ™! Ty jesteÅ› tu! I dajesz radÄ™!")
   } else {
-    phrases <- "Poprawna odpowiedŸ!"
+    phrases <- "Poprawna odpowiedÅº!"
   }
   sample(phrases, 1)
 }
@@ -37,23 +36,23 @@ tryAgain <- function() {
   swirl_is_fun <- getOption("swirl_is_fun")
   
   if(is.null(swirl_is_fun) || isTRUE(swirl_is_fun)) {
-    phrases <- c("No prawie! Spróbuj jeszcze raz.",
-                 "Ju¿ prawie siê uda³o. Jeszcze raz.",
-                 "Spróbuj ponownie.",
-                 "Powtórz Waœæ, wstydu oszczêdŸ!",
-                 "Prawie dobrze. Spróbuj ponownie.",
-                 "Nie do koñca o to mi chodzi³o. Spróbuj jeszcze raz.",
-                 "Niez³a próba, ale nie ot mi chodzi³o. Spróbuj ponownie.",
-                 "Próbuj dalej!",
+    phrases <- c("No prawie! SprÃ³buj jeszcze raz.",
+                 "JuÅ¼ prawie siÄ™ udaÅ‚o. Jeszcze raz.",
+                 "SprÃ³buj ponownie.",
+                 "PowtÃ³rz WaÅ›Ä‡, wstydu oszczÄ™dÅº!",
+                 "Prawie dobrze. SprÃ³buj ponownie.",
+                 "Nie do koÅ„ca o to mi chodziÅ‚o. SprÃ³buj jeszcze raz.",
+                 "NiezÅ‚a prÃ³ba, ale nie ot mi chodziÅ‚o. SprÃ³buj ponownie.",
+                 "PrÃ³buj dalej!",
                  "That's not the answer I was looking for, but try again.",
-                 "Prowadz¹cy p³aka³ jak sprawdza³. Spróbuj jeszcze raz.",
-                 "Panie Turek! Niech pan tu koñczy to spotkanie! Turku! Koñcz ten mecz!",
+                 "ProwadzÄ…cy pÅ‚akaÅ‚ jak sprawdzaÅ‚. SprÃ³buj jeszcze raz.",
+                 "Panie Turek! Niech pan tu koÅ„czy to spotkanie! Turku! KoÅ„cz ten mecz!",
                  "(-_-)zzz",
-                 "Klops. Spróbuj jeszcze raz.",
-                 "To nie to, ale widaæ ¿e siê uczysz! Spróbuj jeszcze raz.",
-                 "Spróbuj jeszcze raz. Zgadywanie wszystkiego za pierwszym razem by³oby nudne!")
+                 "Klops. SprÃ³buj jeszcze raz.",
+                 "To nie to, ale widaÄ‡ Å¼e siÄ™ uczysz! SprÃ³buj jeszcze raz.",
+                 "SprÃ³buj jeszcze raz. Zgadywanie wszystkiego za pierwszym razem byÅ‚oby nudne!")
   } else {
-    phrases <- "Niepoprawna odpowiedŸ. Spróbuj jeszcze raz."
+    phrases <- "Niepoprawna odpowiedÅº. SprÃ³buj jeszcze raz."
   }
   sample(phrases, 1)
 }

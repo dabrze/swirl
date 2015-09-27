@@ -1,11 +1,30 @@
+convert_encoding <- function(x){
+	iconv(x, "UTF-8", "windows-1250")
+}
+
 swirl_out <- function(..., skip_before=TRUE, skip_after=FALSE) {
-  wrapped <- strwrap(str_c(..., sep = " "),
+  wrapped <- strwrap(paste(..., sep = " "),
                      width = getOption("width") - 2)
-  mes <- str_c("| ", wrapped, collapse = "\n")
+  mes <- paste("| ", wrapped, collapse = "\n")
   if(skip_before) mes <- paste0("\n", mes)
   if(skip_after) mes <- paste0(mes, "\n")
   Encoding(mes) <- "UTF-8"
+  mes <- convert_encoding(mes)
+  Encoding(mes) <- "windows-1250"
   message(mes)
+}
+
+swirl_readline <- function(prompt = "") {
+  readline(convert_encoding(prompt))
+}
+
+swirl_select.list <- function(choices, preselect = NULL, multiple = FALSE,
+                              title = NULL, graphics = getOption("menu.graphics")) {
+	if (is.null(title)){ 
+		select.list(convert_encoding(choices), preselect, multiple, NULL, graphics)
+	} else {
+		select.list(convert_encoding(choices), preselect, multiple, convert_encoding(title), graphics)
+	}
 }
 
 # Takes a plain English name and turns it into a more proper 
@@ -122,28 +141,28 @@ loadDependencies <- function(lesson_dir) {
     packages_as_chars <- setdiff(readLines(depends, warn=FALSE), "")
     # If the dependson file is empty, then proceed with lesson
     if(length(packages_as_chars) == 0) return(TRUE)
-    swirl_out("Próbujê za³adowaæ zale¿noœci potrzebne do realizacji lekcji...")
+    swirl_out("PrÃ³bujÄ™ zaÅ‚adowaÄ‡ zaleÅ¼noÅ›ci potrzebne do realizacji lekcji...")
     for(p in packages_as_chars) {
       p <- gsub("^\\s+|\\s+$", "", p) # trim leading and trailing whitespace 
       if(suppressPackageStartupMessages(
         suppressWarnings(
           suppressMessages(require(p, character.only=TRUE, quietly=TRUE))))) {
-        swirl_out("Paczka", sQuote(p), "zosta³a poprawnie za³adowana!")
+        swirl_out("Paczka", sQuote(p), "zostaÅ‚a poprawnie zaÅ‚adowana!")
       } else {
         swirl_out("Ta lekcja wymaga paczki", sQuote(p), 
-                  ". Czy mam j¹ zainstalowaæ za Ciebie?")
-        yn <- select.list(choices=c("Tak", "Nie"), graphics=FALSE)
+                  ". Czy mam jÄ… zainstalowaÄ‡ za Ciebie?")
+        yn <- swirl_select.list(choices=c("Tak", "Nie"), graphics=FALSE)
         if(yn == "Tak") {
-          swirl_out("Probujê zainstalowac paczkê", sQuote(p), "...")
+          swirl_out("ProbujÄ™ zainstalowac paczkÄ™", sQuote(p), "...")
           install.packages(p, quiet=TRUE)
           if(suppressPackageStartupMessages(
             suppressWarnings(
               suppressMessages(require(p, 
                                        character.only=TRUE, 
                                        quietly=TRUE))))) {
-            swirl_out("Paczka", sQuote(p), "osta³a poprawnie za³adowana!")
+            swirl_out("Paczka", sQuote(p), "ostaÅ‚a poprawnie zaÅ‚adowana!")
           } else {
-            swirl_out("Nie mog³em zainstalowaæ paczki", paste0(sQuote(p), "!"))
+            swirl_out("Nie mogÅ‚em zainstalowaÄ‡ paczki", paste0(sQuote(p), "!"))
             return(FALSE)
           }
         } else {
@@ -175,11 +194,11 @@ complete_part <- function(e) {
       if(file.exists(correct_script_path)) {
         try(source(correct_script_path))
       } else {
-        stop("Nie znaleziono poprawnego skryptu pod œcie¿k¹ ", correct_script_path)
+        stop("Nie znaleziono poprawnego skryptu pod Å›cieÅ¼kÄ… ", correct_script_path)
       }
     }
   }
-  message("Uzupe³niam pierwsz¹ czêœæ lekcji za Ciebie...\n")
+  message("UzupeÅ‚niam pierwszÄ… czÄ™Å›Ä‡ lekcji za Ciebie...\n")
   apply(les, 1, exec_cmd)
   invisible()
 }

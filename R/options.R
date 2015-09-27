@@ -89,7 +89,7 @@ delete_swirl_option <- function(name){
   } else {
     stop(paste0("Opcja '", name, "' nie znaleziona."))
   }
-  message(paste0("Opcja '", name, "' usuniêta z powodzeniem!"))
+  message(paste0("Opcja '", name, "' usuniÄ™ta z powodzeniem!"))
   invisible()
 }
 
