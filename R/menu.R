@@ -351,7 +351,7 @@ progressName <- function(courseName, lesName){
 inProgress <- function(e){
   pfiles <- dir(e$udat)[grep("[.]rda$", dir(e$udat))]
   pfiles <- gsub("[.]rda", "", pfiles)
-  pfiles <- str_trim(gsub("_", " ", pfiles))
+  pfiles <- trimws(gsub("_", " ", pfiles))
   return(pfiles)
 }
 
@@ -359,14 +359,14 @@ completed <- function(e){
   pfiles <- dir(e$udat)[grep("[.]done$", dir(e$udat))]
   pfiles <- gsub("[.]done", "", pfiles)
   pfiles <- gsub("[.]rda", "", pfiles)
-  pfiles <- str_trim(gsub("_", " ", pfiles))
+  pfiles <- trimws(gsub("_", " ", pfiles))
   return(pfiles)
 }
 
 get_manifest <- function(course_dir) {
   man <- readLines(file.path(course_dir, "MANIFEST"), warn=FALSE)
   # Remove leading and trailing whitespace
-  man <- str_trim(man)
+  man <- trimws(man)
   # Remove empty lines
   man <- man[which(man != "")]
 }

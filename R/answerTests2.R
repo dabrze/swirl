@@ -276,7 +276,7 @@ expr_identical_to <- function(correct_expression){
 #' @family AnswerTests
 val_matches <- function(regular_expression) {
   e <- get("e", parent.frame())
-  userVal <- str_trim(as.character(e$val))
+  userVal <- trimws(as.character(e$val))
   results <- expectThat(userVal, 
                         matches(regular_expression), 
                         label=userVal)
@@ -318,8 +318,8 @@ any_of_exprs <- function(...){
 #' @family AnswerTests
 var_is_a <- function(class, var_name) {
   e <- get("e", parent.frame())
-  class <-  str_trim(class)
-  var_name <- str_trim(var_name)
+  class <-  trimws(class)
+  var_name <- trimws(var_name)
   if(exists(var_name, globalenv())){
     val <- get(var_name, globalenv())
     label <- val
@@ -346,7 +346,7 @@ var_is_a <- function(class, var_name) {
 #' @family AnswerTests
 expr_is_a <- function(class) {
   e <- get("e", parent.frame())
-  class <-  str_trim(class)
+  class <-  trimws(class)
   expr <- e$expr
   label <- deparse(e$expr)
   results <- expectThat(expr, is_a(class), label=label)
@@ -369,7 +369,7 @@ expr_is_a <- function(class) {
 #' @family AnswerTests
 expr_uses_func <- function(func) {
   e <- get("e", parent.frame())
-  func <- str_trim(func)
+  func <- trimws(func)
   results <- expectThat(e$expr,
                         uses_func(func, label=func), 
                         label=deparse(e$expr))

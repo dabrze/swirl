@@ -50,17 +50,17 @@ runTest.useFunc <- function(keyphrase, e) {
 # of "=" in keyphase
 # This is for single word answers
 runTest.word <- function(keyphrase, e) {
-  correctVal <- str_trim(rightside(keyphrase))
-  identical(str_trim(as.character(e$val)), 
-            str_trim(as.character(correctVal)))
+  correctVal <- trimws(rightside(keyphrase))
+  identical(trimws(as.character(e$val)), 
+            trimws(as.character(correctVal)))
 }
 # Returns TRUE if as.character(e$val) matches the string to the right
 # of "=" in keyphase
 # This is for multi-word answers for which order matters
 runTest.word_order <- function(keyphrase, e) {
-  correctVal <- str_trim(rightside(keyphrase))
-  correct_list <- str_trim(unlist(strsplit(correctVal,",")))
-  userAns <- str_trim(unlist(strsplit(as.character(e$val),",")))
+  correctVal <- trimws(rightside(keyphrase))
+  correct_list <- trimws(unlist(strsplit(correctVal,",")))
+  userAns <- trimws(unlist(strsplit(as.character(e$val),",")))
   identical(userAns, correct_list)
 }
 # Returns TRUE if as.character(e$val) matches the string to the right
@@ -68,7 +68,7 @@ runTest.word_order <- function(keyphrase, e) {
 # This is for multi-word answers for which order doesn't matter
 runTest.word_many <- function(keyphrase,e){
   correct_ans <- rightside(keyphrase)
-  correct_list <- str_trim(unlist(strsplit(correct_ans,",")))
+  correct_list <- trimws(unlist(strsplit(correct_ans,",")))
   identical(sort(correct_list), sort(e$val))
 }
 
@@ -213,8 +213,8 @@ runTest.trick <- function(keyphrase,e){
 # keyphrase: is_a=class or is_a=class,variable
 runTest.is_a <- function(keyphrase, e) {
   temp <- strsplit(rightside(keyphrase),",")[[1]]
-  class <-  str_trim(temp[1])
-  variable <- str_trim(temp[2])
+  class <-  trimws(temp[1])
+  variable <- trimws(temp[2])
   if(!is.na(variable) && exists(variable, globalenv())){
     val <- get(variable, globalenv())
   } else {
@@ -242,8 +242,8 @@ runTest.uses_func <- function(keyphrase, e) {
 # of "=" in keyphase
 # keyphrase: matches=regularExpresion
 runTest.matches <- function(keyphrase, e) {
-  correctVal <- tolower(str_trim(rightside(keyphrase)))
-  userVal <- str_trim(as.character(e$val))
+  correctVal <- tolower(trimws(rightside(keyphrase)))
+  userVal <- trimws(as.character(e$val))
   results <- expectThat(tolower(userVal), 
                         matches(correctVal), 
                         label=userVal)
@@ -290,7 +290,7 @@ runTest.creates_var <- function(keyphrase, e){
 runTest.equals <- function(keyphrase, e){
   temp <- strsplit(rightside(keyphrase),",")[[1]]
   correctExprLabel <- temp[1]
-  variable <- str_trim(temp[2])
+  variable <- trimws(temp[2])
   correctExpr <- gsub(variable, paste0("e$",variable), correctExprLabel)
   correctAns <- safeEval(parse(text=correctExpr))
   if(length(correctAns) != 1)return(FALSE)

@@ -171,7 +171,7 @@ get_yaml <- function(rmd) {
 
 clean_me <- function(rmd) {
   # Remove leading and trailing whitespace
-  rmd_clean <- str_trim(rmd)
+  rmd_clean <- trimws(rmd)
   
   # Remove empty lines
   rmd_clean <- rmd_clean[which(rmd_clean != "")]

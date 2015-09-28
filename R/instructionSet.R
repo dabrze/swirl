@@ -27,17 +27,17 @@ waitUser.default <- function(current.row, e){
 }
 
 waitUser.text_question <- function(current.row, e){
-  e$val <- str_trim(unlist(strsplit(swirl_readline("ODPOWIEDŹ: "),",")))
+  e$val <- trimws(unlist(strsplit(swirl_readline("ODPOWIEDŹ: "),",")))
   e$iptr <- 1 + e$iptr
 }
 
 waitUser.text_many_question <- function(current.row, e){
-  e$val <- str_trim(unlist(strsplit(swirl_readline("ODPOWIEDŹ: "),",")))
+  e$val <- trimws(unlist(strsplit(swirl_readline("ODPOWIEDŹ: "),",")))
   e$iptr <- 1 + e$iptr
 }
 
 waitUser.text_order_question <- function(current.row, e){
-  e$val <- str_trim(unlist(strsplit(swirl_readline("ODPOWIEDŹ: "),",")))
+  e$val <- trimws(unlist(strsplit(swirl_readline("ODPOWIEDŹ: "),",")))
   e$iptr <- 1 + e$iptr
 }
 
@@ -73,12 +73,11 @@ waitUser.mult_question <- function(current.row, e){
   # Use select.list to get the user's choice.
   choices <- strsplit(current.row[,"AnswerChoices"],";")
   # Strsplit returns a list but we want only its first element,
-  # a vector of choices. Use str_trim (pkg stringr) to remove
+  # a vector of choices. Use trimws (pkg stringr) to remove
   # leading and trailing white space from the choices.
-  choices <- str_trim(choices[[1]])
+  choices <- trimws(choices[[1]])
   # Store the choice in e$val for testing
   e$val <- post_mult_question(e, choices)
-  
   e$iptr <- 1 + e$iptr
 }
 
@@ -154,13 +153,14 @@ testResponse.default <- function(current.row, e){
   e$attempts <- 1 + e$attempts
   # Get answer tests
   tests <- current.row[,"AnswerTests"]
+  tests <- convert_encoding(tests)
   if(is.na(tests) || tests == ""){
     results <- is(e, "dev")
     if(!results){
       stop("BUG: Nie ma testów dla tego pytania!")
     }
   } else {
-    tests <- str_trim(unlist(strsplit(tests,";")))
+    tests <- trimws(unlist(strsplit(tests,";")))
     results <- lapply(tests, function(keyphrase){testMe(keyphrase,e)})
   }
   correct <- !(FALSE %in% unlist(results))

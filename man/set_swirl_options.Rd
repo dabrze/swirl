@@ -21,7 +21,7 @@ are specified by the \code{name} of an option that corrsponds to the
 set_swirl_options(courses_dir = getwd())
 
 # Install courses in the default course directory
-set_swirl_options(courses_dir = file.path(system.file("Courses", package = "swirl")))
+set_swirl_options(courses_dir = file.path(system.file("Courses", package = "swirl.pl")))
 }
 }
 
