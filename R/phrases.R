@@ -26,7 +26,7 @@ praise <- function() {
                  "Jaram się jak pochodnia!",
                  "No i o to chodzi!",
                  "Baja!",
-                 "Ja! Uwielbiam Cię! Ty jesteś tu! I dajesz radę!")
+                 "Ja! Uwielbiam Cię! Ty jesteś tu! ...")
   } else {
     phrases <- "Poprawna odpowiedź!"
   }
