@@ -44,7 +44,7 @@ tryAgain <- function() {
                  "Powtórz Waść, wstydu oszczędź!",
                  "Prawie dobrze. Spróbuj ponownie.",
                  "Nie do końca o to mi chodziło. Spróbuj jeszcze raz.",
-                 "Niezła próba, ale nie ot mi chodziło. Spróbuj ponownie.",
+                 "Niezła próba, ale nie o to mi chodziło. Spróbuj ponownie.",
                  "Próbuj dalej!",
                  "That's not the answer I was looking for, but try again.",
                  "Prowadzący płakał jak sprawdzał. Spróbuj jeszcze raz.",
