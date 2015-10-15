@@ -41,7 +41,7 @@ set_swirl_options <- function(...){
     new_opts_file <- new_opts_file[order(new_opts_file$name),]
     write.csv(new_opts_file, file = opts_path(), row.names = FALSE)
   }
-  message("Opcje ustawione!")
+  #message("Opcje ustawione!")
   invisible()
 }
 

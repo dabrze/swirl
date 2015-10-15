@@ -1,5 +1,16 @@
+utilities.env <- new.env()
+assign('convertEncodingToCp1250', TRUE, envir=utilities.env)
+
+swirl_convert_encoding <- function(convert) {
+  assign('convertEncodingToCp1250', convert, envir=utilities.env)
+}
+
 convert_encoding <- function(x){
-	iconv(x, "UTF-8", "windows-1250")
+  if (get('convertEncodingToCp1250', envir=utilities.env)) {
+	  iconv(x, "UTF-8", "windows-1250")
+  } else {
+    x
+  }
 }
 
 swirl_out <- function(..., skip_before=TRUE, skip_after=FALSE) {

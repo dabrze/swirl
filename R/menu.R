@@ -2,6 +2,7 @@
 
 mainMenu <- function(e, ...)UseMethod("mainMenu")
 welcome <- function(e, ...)UseMethod("welcome")
+chooseEncoding <- function(e, ...)UseMethod("chooseEncoding")
 housekeeping <- function(e, ...)UseMethod("housekeeping")
 inProgressMenu <- function(e, choices, ...)UseMethod("inProgressMenu")
 courseMenu <- function(e, courses)UseMethod("courseMenu")
@@ -11,6 +12,9 @@ lessonMenu <- function(e, choices)UseMethod("lessonMenu")
 restoreUserProgress <- function(e, selection)UseMethod("restoreUserProgress")
 loadLesson <- function(e, ...)UseMethod("loadLesson")
 loadInstructions <- function(e, ...)UseMethod("loadInstructions")
+
+windows <- "Windows (CP1250)"
+linux <- "Linux (UTF-8)"
 
 # Default course and lesson navigation logic
 # 
@@ -24,6 +28,27 @@ loadInstructions <- function(e, ...)UseMethod("loadInstructions")
 # @param e persistent environment accessible to the callback
 #'@importFrom yaml yaml.load_file
 mainMenu.default <- function(e){
+  encodingOption <- tryCatch({
+    get_swirl_option("encoding")
+  }, error = function(e) {
+    as.character(NA)
+  })
+  
+  if (is.na(encodingOption)) {
+    encodingOption <- chooseEncoding()
+  }
+  
+  if(identical(encodingOption, windows)) {
+    set_swirl_options(encoding = windows)
+    swirl_convert_encoding(TRUE)
+  } else if(identical(encodingOption, linux)) {
+    set_swirl_options(encoding = linux)
+    swirl_convert_encoding(FALSE)
+  } else {
+    swirl_convert_encoding(TRUE)
+    swirl_out("Błędna wartość. Będę konwertował znaki pod system Windows.")
+  }
+  
   # Welcome the user if necessary and set up progress tracking
   if(!exists("usr",e,inherits = FALSE)){
     e$usr <- welcome(e)
@@ -213,6 +238,26 @@ welcome.default <- function(e, ...){
   }
   return(resp)
 }
+
+chooseEncoding.default <- function() {
+  swirl_out("Na jakim systemie pracujesz?")
+  selection <- swirl_select.list(c(windows, linux), graphics=FALSE)
+  if(identical(selection, linux)) {
+    swirl_convert_encoding(FALSE)
+    swirl_out("OK. Będę tekst wysyłany na konsolę kodował w UTF-8.")
+  } else {
+    swirl_convert_encoding(TRUE)
+    swirl_out("OK. Będę konwertował znaki, aby poprawnie wyświetlały się w konsoli R na Windowsie.")
+  }
+  
+  return(selection)
+}
+
+readEncoding.default <- function() {
+  
+}
+
+writeEncoding.default <- 
 
 # Presents preliminary information to a new user
 # 
