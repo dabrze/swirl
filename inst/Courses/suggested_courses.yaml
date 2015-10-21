@@ -1,3 +1,6 @@
 - Course: Programowanie w R
   Description: Podstawy programowania w R
   Install: install_from_swirl('Programowanie_w_R')
+- Course: Przetwarzanie danych
+  Description: Przetwarzanie i transformacja danych w R
+  Install: install_from_swirl('Przetwarzanie_danych')
