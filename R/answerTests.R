@@ -435,7 +435,7 @@ uses_func <- function(expected, label = NULL, ...){
   function(expr){
     uses <- (is.call(expr) || is.expression(expr)) && 
       expected %in% flatten(expr)
-    expectation(identical(uses, TRUE),
+    expectation_old(identical(uses, TRUE),
                 str_c("does not use ", label))
   }
 }
@@ -446,12 +446,19 @@ in_range <- function(range, label=NULL){
     isOK <- is.numeric(number) && 
       isTRUE(number >= range[1]) && 
       isTRUE(number <= range[2])
-    expectation(identical(isOK, TRUE), 
+    expectation_old(identical(isOK, TRUE), 
                 str_c("nie jest pomiędzy ", range[1], " i ", range[2]))
   }
 }
 
-
-
-
-
+expectation_old <- function(passed, failure_msg, 
+                            success_msg = "unknown", 
+                            srcref = NULL) {
+  structure(list(passed = passed,
+                 error = FALSE,
+                 skipped = FALSE,
+                 failure_msg = failure_msg,
+                 success_msg = success_msg,
+                 srcref = srcref),
+            class = "expectation")
+}

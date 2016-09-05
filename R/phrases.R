@@ -8,6 +8,8 @@ praise <- function() {
                  "Dajesz, dajesz!",
                  "Proste!",
                  "Mniam!",
+                 "Propsy!",
+                 "Fejm",
                  "Idealnie! O to chodziło!",
                  "Jesteś geniuszem!",
                  "Wyjdź za mnie!",
@@ -23,8 +25,8 @@ praise <- function() {
                  "Się wie!",
                  "Ćwiczenie czyni mistrza!",
                  "Rządzisz!",
-				 "Wyginasz blachę!",
-				 "Czacha dymi!",
+                 "Wyginasz blachę!",
+                 "Czacha dymi!",
                  "Jaram się jak pochodnia!",
                  "No i o to chodzi!",
                  "Baja!",
@@ -48,8 +50,6 @@ tryAgain <- function() {
                  "Nie do końca o to mi chodziło. Spróbuj jeszcze raz.",
                  "Niezła próba, ale nie o to mi chodziło. Spróbuj ponownie.",
                  "Próbuj dalej!",
-                 "(-_-)zzz",
-                 "Klops. Spróbuj jeszcze raz.",
                  "To nie to, ale widać że się uczysz! Spróbuj jeszcze raz.",
                  "Spróbuj jeszcze raz. Zgadywanie wszystkiego za pierwszym razem byłoby nudne!")
   } else {
