@@ -56,4 +56,3 @@ character or numeric vectors of length 1.
   }
   @family AnswerTests
 }
-

@@ -24,4 +24,3 @@ set_swirl_options(courses_dir = getwd())
 set_swirl_options(courses_dir = file.path(system.file("Courses", package = "swirl.pl")))
 }
 }
-

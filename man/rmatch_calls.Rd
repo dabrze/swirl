@@ -29,4 +29,3 @@ parameter eval_env.
 CAUTION: eval_for_class=TRUE is likely to result in multiple evaluations of the same code.
 Expressions containing S4 or reference class methods will also raise errors.
 }
-

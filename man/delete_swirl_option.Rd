@@ -19,4 +19,3 @@ its \code{name}.
 delete_swirl_option("Brians_phone_number")
 }
 }
-

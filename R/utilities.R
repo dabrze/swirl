@@ -14,14 +14,16 @@ convert_encoding <- function(x){
 }
 
 swirl_out <- function(..., skip_before=TRUE, skip_after=FALSE) {
-  wrapped <- strwrap(paste(..., sep = " "),
-                     width = getOption("width") - 2)
-  mes <- paste("| ", wrapped, collapse = "\n")
-  if(skip_before) mes <- paste0("\n", mes)
-  if(skip_after) mes <- paste0(mes, "\n")
+  mes <- paste(..., sep = " ")
   Encoding(mes) <- "UTF-8"
   mes <- convert_encoding(mes)
   Encoding(mes) <- "windows-1250"
+  mes <- strwrap(mes,
+                 width = getOption("width") - 2)
+  mes <- paste("| ", mes, collapse = "\n")
+  if(skip_before) mes <- paste0("\n", mes)
+  if(skip_after) mes <- paste0(mes, "\n")
+  
   message(mes)
 }
 

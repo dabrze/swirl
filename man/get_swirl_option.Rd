@@ -18,4 +18,3 @@ Returns the \code{value} of a swirl option by providing its \code{name}.
 get_swirl_option("courses_dir")
 }
 }
-

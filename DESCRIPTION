@@ -4,7 +4,7 @@ Description: A polish translation of swirl - a library that turns the R console
     into an interactive learning environment. Users receive immediate feedback as
     they are guided through self-paced lessons in data science and R programming.
 URL: http://swirlstats.com
-Version: 1.2.1
+Version: 1.2.2
 License: MIT
 Authors@R: c(
     person("Nick", "Carchedi", email = "nick.carchedi@gmail.com", role = c("aut", "cre")),
@@ -27,4 +27,4 @@ Imports:
     tools,
     rappdirs
 Roxygen: list(wrap = FALSE)
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
