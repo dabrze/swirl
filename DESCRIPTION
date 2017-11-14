@@ -25,6 +25,7 @@ Imports:
     RCurl,
     digest,
     tools,
-    rappdirs
+    rappdirs,
+    methods
 Roxygen: list(wrap = FALSE)
 RoxygenNote: 6.0.1
