@@ -228,7 +228,7 @@ welcome.test <- function(e, ...){
 
 # Default version.
 welcome.default <- function(e, ...){
-  swirl_out("Witaj w narzędziu swirl!")
+  swirl_out("Witaj w programie swirl!")
   swirl_out("Zaloguj się. Jeśli już wcześniej korzystałeś z swirla na tym komputerze, użyj tej samej nazwy użytkownika co poprzednio.\nJeśli jesteś tu nowy, wymyśl jakąś unikalną nazwę uzytkownika.", skip_after=TRUE)
   resp <- swirl_readline("Jak mam Cię zwać? ")
   while(str_detect(resp, '[[:punct:]]')) {

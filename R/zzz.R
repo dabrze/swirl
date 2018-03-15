@@ -17,7 +17,7 @@
     )
   } else {
     packageStartupMessage(
-      make_pretty("Witaj! Wpisz swirl(), gdy będziesz gotowy.",
+      make_pretty("Witaj! Wpisz swirl(), gdy bedziesz gotowy.",
                   skip_after=TRUE)
     )
   }

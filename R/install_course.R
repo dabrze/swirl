@@ -389,7 +389,7 @@ install_course_google_drive <- function(url, multi=FALSE){
 #' @param multi The user should set to \code{TRUE} if the zipped directory contains multiple courses. The default value is \code{FALSE}.
 #' @export
 #' @importFrom httr GET content progress
-#' @importFrom stringr str_extract perl
+#' @importFrom stringr str_extract
 #' @examples
 #' \dontrun{
 #' 
@@ -419,7 +419,7 @@ install_course_url <- function(url, multi=FALSE){
     
     # Extract course name
     course_name <- sub("/zipball", "", 
-                       str_extract(url, perl("[^/]+/{1}zipball")) )
+                       str_extract(url, "[^/]+/{1}zipball") )
     
     # Rename unzipped directory
     file.rename(file.path(get_swirl_option("courses_dir"), old_name), 

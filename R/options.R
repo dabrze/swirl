@@ -94,10 +94,9 @@ delete_swirl_option <- function(name){
 }
 
 # Get the options file path
-#' @importFrom rappdirs user_data_dir
 opts_path <- function(){
   # Find user data directory
-  udd <- user_data_dir(appname = "swirl.pl", appauthor = "swirldev", roaming = TRUE)
+  udd <- file.path(find.package("swirl.pl"), "user_data")
   
   # If the directory doesn't exist, create it
   if(!file.exists(udd)){
