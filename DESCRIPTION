@@ -16,7 +16,7 @@ Authors@R: c(
     person("Dariusz", "Brzezinski", role = "ctb")
     )
 Depends:
-    R (>= 3.4.3)
+    R (>= 3.4.1)
 Imports:
     stringr,
     testthat (>= 1.0.2),
