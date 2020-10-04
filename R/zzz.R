@@ -1,7 +1,7 @@
 .onLoad <- function(libname, pkgname){
-  if(!file.exists(opts_path())){
+  #if(!file.exists(opts_path())){
     set_swirl_options(courses_dir = file.path(system.file("Courses", package = "swirl.pl")))
-  }
+  #}
   invisible()
 }
 

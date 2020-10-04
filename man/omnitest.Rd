@@ -4,8 +4,12 @@
 \alias{omnitest}
 \title{Test for a correct expression, a correct value, or both.}
 \usage{
-omnitest(correctExpr = NULL, correctVal = NULL, strict = FALSE,
-  eval_for_class = as.logical(NA))
+omnitest(
+  correctExpr = NULL,
+  correctVal = NULL,
+  strict = FALSE,
+  eval_for_class = as.logical(NA)
+)
 }
 \arguments{
 \item{correctExpr}{the correct or expected expression as a string}

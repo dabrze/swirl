@@ -84,6 +84,7 @@ mainMenu.default <- function(e){
       
       # If no courses are available, offer to install one
       if(length(coursesU)==0){
+		print(courseDir(e))
         suggestions <- yaml.load_file(file.path(courseDir(e), "suggested_courses.yaml"))
         choices <- sapply(suggestions, function(x)paste0(x$Course, ": ", x$Description))
         swirl_out("Aby rozpocząć, musisz mieć zainstalowany jakiś moduł. Mogę zainstalować za Ciebie",
